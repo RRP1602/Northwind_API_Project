@@ -48,7 +48,7 @@ namespace NorthwindAPI.Controllers
         }
 
         // GET: api/Products/ByName/phone
-        [HttpGet("/ByName/{name}")]
+        [HttpGet("ByName/{name}")]
         public async Task<ActionResult<DTOProduct>> GetProductByName(string name)
         {
             var product = await _service.GetProductByNameAsync(name);
@@ -62,7 +62,7 @@ namespace NorthwindAPI.Controllers
         }
 
         // GET: api/Products/ByCategory/1
-        [HttpGet("/ByCategory/{category}")]
+        [HttpGet("ByCategory/{categoryId}")]
         public async Task<ActionResult<IEnumerable<DTOProduct>>> GetProductByCategoryId(int categoryId)
         {
             var product = await _service.GetProductByCategoryIdAsync(categoryId);
@@ -76,8 +76,8 @@ namespace NorthwindAPI.Controllers
 
             return dto;
         }
-        // GET: api/Products/ByCategory/1
-        [HttpGet("/BySupplier/{supplierId}")]
+        // GET: api/Products/BySupplir/1
+        [HttpGet("BySupplier/{supplierId}")]
         public async Task<ActionResult<IEnumerable<DTOProduct>>> GetProductBySupplierId(int supplierId)
         {
             var product = await _service.GetProductBySupplierIdAsync(supplierId);
