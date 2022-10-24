@@ -160,7 +160,7 @@ namespace NorthwindAPI.Controllers
         {
 
             //return _service.Products.Any(e => e.ProductId == id);
-            return _service.ProductsExsits(id);
+            return _service.ProductsExists(id);
         }
     }
 }
