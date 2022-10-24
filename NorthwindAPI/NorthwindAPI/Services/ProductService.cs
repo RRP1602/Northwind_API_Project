@@ -11,10 +11,9 @@ namespace NorthwindAPI.Services
         {
             _context = context;
         }
-        public async Task AddProductAsync(Product product)
+        public Task AddProductAsync(Product product)
         {
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<Product>> GetAllProductsAsync()
