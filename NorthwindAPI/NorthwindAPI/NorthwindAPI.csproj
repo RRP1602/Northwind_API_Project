@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>1fc36664-89ae-4321-ba34-0f46cc4405af</UserSecretsId>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -18,9 +19,5 @@
 		<PackageReference Include="Rocket.EntityFrameworkCore.InMemory" Version="5.0.0.26" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	</ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
 
 </Project>
