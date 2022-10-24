@@ -104,9 +104,9 @@ namespace NorthwindAPI.Controllers
             var product = await _service.GetProductByIdAsync(id);
 
 
-            product.CategoryId = dto.CategoryId ?? product.CategoryId;
+            product.CategoryId = dto.Category.CategoryId;
             product.ProductName = dto.ProductName ?? product.ProductName;
-            product.SupplierId = dto.SupplierId ?? product.SupplierId;
+            product.SupplierId = dto.Supplier.SupplierId;
             product.UnitPrice = dto.UnitPrice ?? product.UnitPrice;
 
             //_service.Entry(product).State = EntityState.Modified;
