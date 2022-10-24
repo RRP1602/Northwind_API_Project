@@ -23,12 +23,17 @@ namespace NorthwindAPI.Services
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products
+                .Include(p => p.Supplier)
+                .Include(p => p.Category).ToListAsync();
         }
 
         public async Task<IEnumerable<Product>> GetProductByCategoryIdAsync(int id)
         {
-            return await _context.Products.Include(x=> x.Category).Where(x => x.CategoryId == id).ToListAsync();
+            return await _context.Products
+                .Include(x=> x.Category)
+                .Include(p => p.Supplier)
+                .Where(x => x.CategoryId == id).ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
@@ -39,7 +44,6 @@ namespace NorthwindAPI.Services
         public async Task<Product?> GetProductByNameAsync(string name)
         {
             return await _context.Products
-                .Include(p => p.OrderDetails)
                 .Include(p => p.Supplier)
                 .Include(p => p.Category)
                 .Where(p => p.ProductName == name)
@@ -50,7 +54,6 @@ namespace NorthwindAPI.Services
         public async Task<IEnumerable<Product>> GetProductBySupplierIdAsync(int id)
         {
             return await _context.Products
-                .Include(p => p.OrderDetails)
                 .Include(p => p.Supplier)
                 .Include(p => p.Category)
                 .Where(p => p.SupplierId == id)
