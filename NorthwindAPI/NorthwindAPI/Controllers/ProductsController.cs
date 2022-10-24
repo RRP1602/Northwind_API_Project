@@ -66,13 +66,12 @@ namespace NorthwindAPI.Controllers
         public async Task<ActionResult<IEnumerable<DTOProduct>>> GetProductByCategoryId(int categoryId)
         {
             var product = await _service.GetProductByCategoryIdAsync(categoryId);
-
-            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
-
             if (product == null)
             {
                 return NotFound();
             }
+
+            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
 
             return dto;
         }
@@ -82,12 +81,12 @@ namespace NorthwindAPI.Controllers
         {
             var product = await _service.GetProductBySupplierIdAsync(supplierId);
 
-            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
-
             if (product == null)
             {
                 return NotFound();
             }
+
+            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
 
             return dto;
         }
