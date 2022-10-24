@@ -76,6 +76,21 @@ namespace NorthwindAPI.Controllers
 
             return dto;
         }
+        // GET: api/Products/ByCategory/1
+        [HttpGet("/BySupplier/{supplierId}")]
+        public async Task<ActionResult<IEnumerable<DTOProduct>>> GetProductBySupplierId(int supplierId)
+        {
+            var product = await _service.GetProductBySupplierIdAsync(supplierId);
+
+            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return dto;
+        }
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
