@@ -21,9 +21,9 @@ namespace NorthwindAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public  List<Product> GetAllProducts()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return _context.Products.ToList();
+            return await _context.Products.ToListAsync();
         }
 
         public async Task<IEnumerable<Product>> GetProductByCategoryIdAsync(int id)
@@ -36,29 +36,41 @@ namespace NorthwindAPI.Services
             return await _context.Products.Where(x => x.ProductId == id).FirstOrDefaultAsync();
         }
 
-        public async Task<Product> GetProductByNameAsync(string name)
+        public async Task<Product?> GetProductByNameAsync(string name)
         {
-            return await _context.Products.Where(x => x.ProductName == name).FirstOrDefaultAsync();
+            return await _context.Products
+                .Include(p => p.OrderDetails)
+                .Include(p => p.Supplier)
+                .Include(p => p.Category)
+                .Where(p => p.ProductName == name)
+                .FirstOrDefaultAsync();
+
         }
 
         public async Task<IEnumerable<Product>> GetProductBySupplierIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Products
+                .Include(p => p.OrderDetails)
+                .Include(p => p.Supplier)
+                .Include(p => p.Category)
+                .Where(p => p.SupplierId == id)
+                .ToListAsync();
         }
 
         public bool ProductsExsits(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Any(p => p.ProductId == id);
         }
 
-        public Task RemoveProductAsync(Product product)
+        public async Task RemoveProductAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(product);
+            await SaveChangesAsync();
         }
 
         public Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace NorthwindAPI.Services
     {
         Task<IEnumerable<Product>> GetAllProductsAsync(); 
         Task<Product> GetProductByIdAsync(int id);
-        Task<Product> GetProductByNameAsync(string name);
+        Task<Product?> GetProductByNameAsync(string name);
         Task<IEnumerable<Product>> GetProductByCategoryIdAsync(int id);
         Task<IEnumerable<Product>> GetProductBySupplierIdAsync(int id);
         Task AddProductAsync(Product product); 
