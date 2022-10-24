@@ -1,58 +1,76 @@
-﻿using NorthwindAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using NorthwindAPI.Models;
 
 namespace NorthwindAPI.Services
 {
     public class ProductService : IProductService
     {
         private readonly NorthwindContext _context;
-      
+
+        public ProductService()
+        {
+            _context = new NorthwindContext();
+        }
         public ProductService(NorthwindContext context)
         {
             _context = context;
         }
-        public Task AddProductAsync(Product product)
+        public async Task AddProductAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Product>> GetAllProductsAsync()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Products.ToListAsync();
         }
 
-        public Task<IEnumerable<Product>> GetProductByCategoryIdAsync(int id)
+        public async Task<IEnumerable<Product>> GetProductByCategoryIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Products.Include(x=> x.Category).Where(x => x.CategoryId == id).ToListAsync();
         }
 
-        public Task<Product> GetProductByIdAsync(int id)
+        public async Task<Product> GetProductByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Products.Where(x => x.ProductId == id).FirstOrDefaultAsync();
         }
 
-        public Task<Product> GetProductByNameAsync(string name)
+        public async Task<Product?> GetProductByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            return await _context.Products
+                .Include(p => p.OrderDetails)
+                .Include(p => p.Supplier)
+                .Include(p => p.Category)
+                .Where(p => p.ProductName == name)
+                .FirstOrDefaultAsync();
+
         }
 
-        public Task<IEnumerable<Product>> GetProductBySupplierIdAsync(int id)
+        public async Task<IEnumerable<Product>> GetProductBySupplierIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Products
+                .Include(p => p.OrderDetails)
+                .Include(p => p.Supplier)
+                .Include(p => p.Category)
+                .Where(p => p.SupplierId == id)
+                .ToListAsync();
         }
 
         public bool ProductsExsits(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Any(p => p.ProductId == id);
         }
 
-        public Task RemoveProductAsync(Product product)
+        public async Task RemoveProductAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(product);
+            await SaveChangesAsync();
         }
 
         public Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
     }
 }
