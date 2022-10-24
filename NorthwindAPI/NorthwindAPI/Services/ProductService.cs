@@ -72,5 +72,10 @@ namespace NorthwindAPI.Services
         {
             return _context.SaveChangesAsync();
         }
+
+        public void ModifyState(Product product)
+        {
+            _context.Entry(product).State = EntityState.Modified;
+        }
     }
 }
