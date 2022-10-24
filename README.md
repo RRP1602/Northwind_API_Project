@@ -3,8 +3,7 @@
 
 1. [About The Project](#about-the-project)
     1. [Built With](#built-with)
-2. [Getting Started](#getting-started)
-
+2. [Getting Started](#getting-started)    
 3. [Usage](#usage)
 4. [Web API](#web-api)
 5. [Contributors](#contributors) 
@@ -21,10 +20,14 @@ Clone the repo
 ```
 https://github.com/RRP1602/Northwind_API_Project.git 
 ```
+# How to use
+- We recommend having the latest Visual Studio installed as well as C#. 
+- You can use the swagger UI but having Postman is a much better option. 
+- Once the repo has been cloned open the ``` NorthwindAPI.sln``` file. 
+- Run the code and use the url you get and coapy and paste it into Postman. 
 
-- We recommend having the latest Visual Studio installed as well as C#.
-
-
+![FirstScreen](README_Screenshots/postman_screenshot.PNG)
+Above is an example of how it looks when all the products selected on Postman. 
 
 
 # Web API
