@@ -10,16 +10,16 @@ namespace NorthwindAPI_Tests
     {
         private NorthwindContext _context;
         private IProductService _sut;
-        
-        [SetUp]
+
+        [OneTimeSetUp]
         public void OneTimeSetup()
         {
             var options = new DbContextOptionsBuilder<NorthwindContext>()
                 .UseInMemoryDatabase(databaseName: "NorthwindDB").Options;
             _context = new NorthwindContext(options);
             _sut = new ProductService(_context);
-           _sut.AddProductAsync(new Product {ProductId = 1, ProductName = "Test",SupplierId = 1,CategoryId = 1, QuantityPerUnit = "1", UnitPrice = 1,UnitsInStock = 1,UnitsOnOrder = 1, ReorderLevel = 1}).Wait();
-           _sut.AddProductAsync(new Product {ProductId = 2, ProductName = "TestSameSupplierId", SupplierId = 1,CategoryId = 2, QuantityPerUnit = "2", UnitPrice = 2,UnitsInStock = 2,UnitsOnOrder = 2, ReorderLevel = 2}).Wait();
+            _sut.AddProductAsync(new Product { ProductId = 1, ProductName = "Test", SupplierId = 1, CategoryId = 1, QuantityPerUnit = "1", UnitPrice = 1, UnitsInStock = 1, UnitsOnOrder = 1, ReorderLevel = 1 }).Wait();
+            _sut.AddProductAsync(new Product { ProductId = 2, ProductName = "TestSameSupplierId", SupplierId = 14, CategoryId = 2, QuantityPerUnit = "2", UnitPrice = 2, UnitsInStock = 2, UnitsOnOrder = 2, ReorderLevel = 2 }).Wait();
 
         }
 
@@ -30,6 +30,7 @@ namespace NorthwindAPI_Tests
             Assert.That(result, Is.TypeOf<List<Product>>());
             // more tests
         }
+
         [Category("Happy Path")]
         [Test]
         public void GivenProduct_AddProductAsync_ReturnsNewProduct()
@@ -46,6 +47,8 @@ namespace NorthwindAPI_Tests
             Assert.That(result.UnitsInStock, Is.EqualTo(2));
             Assert.That(result.UnitsOnOrder, Is.EqualTo(1));
             Assert.That(result.ReorderLevel, Is.EqualTo(5));
+
+            _context.Products.Remove(_sut.GetProductByIdAsync(10).Result);
         }
         [Category("Happy Path")]
         [Test]
@@ -85,7 +88,7 @@ namespace NorthwindAPI_Tests
         {
             var result = _sut.GetProductByCategoryIdAsync(1).Result;
             Assert.That(result, Is.Not.Null);
-            Assert.That(result, Is.TypeOf<Product>());
+            Assert.That(result, Is.TypeOf<List<Product>>());
             // more tests
         }
         [Test]
