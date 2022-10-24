@@ -121,7 +121,7 @@ namespace NorthwindAPI_Tests
                 .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }));
             mockService.Setup(ms => ms.SaveChangesAsync())
                 .Throws<DbUpdateConcurrencyException>();
-            mockService.Setup(ms => ms.ProductsExsits(It.IsAny<int>()))
+            mockService.Setup(ms => ms.ProductsExists(It.IsAny<int>()))
                 .Returns(false);
 
             _sut = new ProductsController(mockService.Object);
@@ -142,7 +142,7 @@ namespace NorthwindAPI_Tests
                 .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }));
             mockService.Setup(ms => ms.SaveChangesAsync())
                 .Throws<DbUpdateConcurrencyException>();
-            mockService.Setup(ms => ms.ProductsExsits(It.IsAny<int>()))
+            mockService.Setup(ms => ms.ProductsExists(It.IsAny<int>()))
                 .Returns(true);
 
             _sut = new ProductsController(mockService.Object);
@@ -292,5 +292,47 @@ namespace NorthwindAPI_Tests
             Assert.That(result, Is.Null);
         }
 
+        [Test]
+        [Category("Happy")]
+        public void When_DeleteProduct_Given_ValidId_Returns_Expected()
+        {
+            var expected = new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+            var dto = new DTOProduct() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductByIdAsync(It.IsAny<int>())).Returns(Task.FromResult(expected));
+            mockService.Setup(ms => ms.RemoveProductAsync(It.IsAny<Product>()));
+
+            _sut = new ProductsController(mockService.Object);
+
+            StatusCodeResult result = (StatusCodeResult)_sut.DeleteProduct(It.IsAny<int>()).Result;
+
+            mockService.Verify(ms => ms.GetProductByIdAsync(It.IsAny<int>()), Times.Once());
+            mockService.Verify(ms => ms.RemoveProductAsync(It.IsAny<Product>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status204NoContent));
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void When_DeleteProduct_Given_ValidId_Returns_ExpectedAAA()
+        {
+            var expected = new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+            var dto = new DTOProduct() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductByIdAsync(It.IsAny<int>())).Returns(Task.FromResult((Product)null!));
+            mockService.Setup(ms => ms.RemoveProductAsync(It.IsAny<Product>()));
+
+            _sut = new ProductsController(mockService.Object);
+
+            StatusCodeResult result = (StatusCodeResult)_sut.DeleteProduct(It.IsAny<int>()).Result;
+
+            mockService.Verify(ms => ms.GetProductByIdAsync(It.IsAny<int>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status404NotFound));
+        }
     }
 }

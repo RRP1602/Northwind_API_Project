@@ -124,14 +124,14 @@ namespace NorthwindAPI_Tests
         [Test]
         public void GivenProductExists_ProductsExsits_ReturnsTrue()
         {
-            var result = _sut.ProductsExsits(1);
+            var result = _sut.ProductsExists(1);
             Assert.That(result, Is.EqualTo(true));
         }
         [Category("ProductExists")]
         [Test]
         public void GivenProducDoesNottExist_ProductsExsits_ReturnsFalse()
         {
-            var result = _sut.ProductsExsits(1000);
+            var result = _sut.ProductsExists(1000);
             Assert.That(result, Is.EqualTo(false));
         }
         [Category("SaveChangesAsync")]
