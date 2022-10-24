@@ -24,6 +24,7 @@ namespace NorthwindAPI_Tests
         }
 
         [Test]
+        [Category("GetAllProductsAsync")]
         public void GivenProducts_GetAllProductsAsync_ReturnsAllProducts()
         {
             var result = _sut.GetAllProductsAsync().Result;
@@ -31,7 +32,7 @@ namespace NorthwindAPI_Tests
             // more tests
         }
 
-        [Category("Happy Path")]
+        [Category("AddProductAsync")]
         [Test]
         public void GivenProduct_AddProductAsync_ReturnsNewProduct()
         {
@@ -50,7 +51,7 @@ namespace NorthwindAPI_Tests
 
             _context.Products.Remove(_sut.GetProductByIdAsync(10).Result);
         }
-        [Category("Happy Path")]
+        [Category("GetProductByIdAsync")]
         [Test]
         public void GivenValidProductId_GetProductByIdAsync_ReturnsProduct()
         {
@@ -66,7 +67,7 @@ namespace NorthwindAPI_Tests
             Assert.That(result.UnitsOnOrder, Is.EqualTo(1));
             Assert.That(result.ReorderLevel, Is.EqualTo(1));
         }
-        [Category("Happy Path")]
+        [Category("GetProductByNameAsync")]
         [Test]
         public void GivenValidProductName_GetProductByNameAsync_ReturnsProduct()
         {
@@ -82,7 +83,7 @@ namespace NorthwindAPI_Tests
             Assert.That(result.UnitsOnOrder, Is.EqualTo(1));
             Assert.That(result.ReorderLevel, Is.EqualTo(1));
         }
-        [Category("Happy Path")]
+        [Category("GetProductByCategoryIdAsync")]
         [Test]
         public void GivenValidCategoryId_GetProductByCategoryIdAsync_ReturnsProduct()
         {
@@ -107,6 +108,43 @@ namespace NorthwindAPI_Tests
             Assert.That(result.UnitsOnOrder, Is.EqualTo(1));
             Assert.That(result.ReorderLevel, Is.EqualTo(1));
             // more tests of different products but same supplierId
+        }
+        [Category("RemoveProductByIdAsync")]
+        [Test]
+        public void GivenValidProduct_RemoveProductAsync_RemovesProductFromDatabase()
+        {
+            var product = _sut.GetProductByIdAsync(2).Result;
+            _sut.RemoveProductAsync(product);
+
+            var result = _context.Products.Where(x => x.SupplierId == 2).FirstOrDefault();
+
+            Assert.That(result, Is.EqualTo(null));
+        }
+        [Category("ProductExists")]
+        [Test]
+        public void GivenProductExists_ProductsExsits_ReturnsTrue()
+        {
+            var result = _sut.ProductsExsits(1);
+            Assert.That(result, Is.EqualTo(true));
+        }
+        [Category("ProductExists")]
+        [Test]
+        public void GivenProducDoesNottExist_ProductsExsits_ReturnsFalse()
+        {
+            var result = _sut.ProductsExsits(1000);
+            Assert.That(result, Is.EqualTo(false));
+        }
+        [Category("SaveChangesAsync")]
+        [Test]
+        public void SaveChangesAsync_SavesToTheDatabase()
+        {
+            var result = _sut.SaveChangesAsync().Result;
+
+            var newProduct = new Product { ProductName = "TEST TEST" };
+            _sut.SaveChangesAsync();
+
+            Assert.That(result, Is.TypeOf<int>());
+            Assert.That(_context.Products.Where(x => x.ProductName == "TEST TEST"), Is.Not.Null);
         }
     }
 }
