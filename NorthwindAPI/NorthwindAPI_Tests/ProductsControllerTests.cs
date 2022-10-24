@@ -39,8 +39,8 @@ namespace NorthwindAPI_Tests
             mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
             Assert.That(result, Is.InstanceOf<IEnumerable<DTOProduct>>());
-            Assert.That(result.Count, Is.EqualTo(1));
-            Assert.That(result.FirstOrDefault().ProductName, Is.EqualTo("TESTTEST"));
+            Assert.That(result!.Count, Is.EqualTo(1));
+            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST"));
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace NorthwindAPI_Tests
             mockService.Verify(ms => ms.GetProductByIdAsync(It.IsAny<int>()), Times.Once());
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
             Assert.That(result, Is.InstanceOf<DTOProduct>());
-            Assert.That(result.ProductName, Is.EqualTo("TESTTEST"));
+            Assert.That(result!.ProductName, Is.EqualTo("TESTTEST"));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace NorthwindAPI_Tests
         {
             var mockService = new Mock<IProductService>();
             mockService.Setup(ms => ms.GetProductByIdAsync(It.IsAny<int>()))
-                .Returns(Task.FromResult((Product)null));
+                .Returns(Task.FromResult((Product)null!));
 
             _sut = new ProductsController(mockService.Object);
 
@@ -147,7 +147,7 @@ namespace NorthwindAPI_Tests
 
             _sut = new ProductsController(mockService.Object);
 
-            StatusCodeResult result = null;
+            StatusCodeResult result = null!;
 
             Assert.Throws<AggregateException>(() =>
             {
@@ -158,5 +158,139 @@ namespace NorthwindAPI_Tests
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
             Assert.That(result, Is.Null);
         }
+
+        [Test]
+        [Category("Happy")]
+        public void When_GetProductByName_Given_ValidString_Returns_Expected()
+        {
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductByNameAsync(It.IsAny<string>()))
+                .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" })!);
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductByName(It.IsAny<string>()).Result.Value;
+
+            mockService.Verify(ms => ms.GetProductByNameAsync(It.IsAny<string>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result!.ProductName, Is.EqualTo("TESTTEST"));
+        }
+        [Test]
+        [Category("Sad")]
+        public void When_GetProductByName_Given_InvalidString_Returns_Null()
+        {
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductByNameAsync(It.IsAny<string>()))
+                .Returns(Task.FromResult((Product)null!)!);
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductByName(It.IsAny<string>()).Result.Value;
+
+            mockService.Verify(ms => ms.GetProductByNameAsync(It.IsAny<string>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void When_GetProductByCategoryId_Given_ValidId_Returns_Expected()
+        {
+            IEnumerable<Product> expected = new List<Product>()
+            {
+                new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductByCategoryIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(expected));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductByCategoryId(It.IsAny<int>()).Result.Value;
+
+            mockService.Verify(ms => ms.GetProductByCategoryIdAsync(It.IsAny<int>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST"));
+        }
+
+        [Test]
+        [Category("Sad")]
+        public void When_GetProductByCategoryId_Given_InvalidId_Returns_Null()
+        {
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductByCategoryIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(It.IsAny<IEnumerable<Product>>()));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductByCategoryId(It.IsAny<int>()).Result.Value;
+
+            mockService.Verify(ms => ms.GetProductByCategoryIdAsync(It.IsAny<int>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void When_GetProductBySupplierId_Given_ValidId_Returns_Expected()
+        {
+            IEnumerable<Product> expected = new List<Product>()
+            {
+                new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductBySupplierIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(expected));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductBySupplierId(It.IsAny<int>()).Result.Value;
+
+            mockService.Verify(ms => ms.GetProductBySupplierIdAsync(It.IsAny<int>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST"));
+        }
+
+        [Test]
+        [Category("Sad")]
+        public void When_GetProductBySupplierId_Given_InvalidId_Returns_Null()
+        {
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductBySupplierIdAsync(It.IsAny<int>()))
+                .Returns(Task.FromResult(It.IsAny<IEnumerable<Product>>()));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductBySupplierId(It.IsAny<int>()).Result.Value;
+
+            mockService.Verify(ms => ms.GetProductBySupplierIdAsync(It.IsAny<int>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void When_PostProduct_Given_ValidDTO_Returns_Expected()
+        {
+            var expected = new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+            var dto = new DTOProduct() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+           
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.AddProductAsync(It.IsAny<Product>())).Returns(Task.FromResult(expected));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.PostProduct(dto).Result.Value;
+
+            mockService.Verify(ms => ms.AddProductAsync(It.IsAny<Product>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Null);
+        }
+
     }
 }
