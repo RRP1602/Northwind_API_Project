@@ -42,17 +42,18 @@ namespace NorthwindAPI.Services
 
         public bool ProductsExsits(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Any(p => p.ProductId == id);
         }
 
-        public Task RemoveProductAsync(Product product)
+        public async Task RemoveProductAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(product);
+            await SaveChangesAsync();
         }
 
         public Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
     }
 }
