@@ -1,4 +1,5 @@
-﻿using NorthwindAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using NorthwindAPI.Models;
 
 namespace NorthwindAPI.Services
 {
@@ -10,9 +11,10 @@ namespace NorthwindAPI.Services
         {
             _context = context;
         }
-        public Task AddProductAsync(Product product)
+        public async Task AddProductAsync(Product product)
         {
-            throw new NotImplementedException();
+            await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
         }
 
         public Task<IEnumerable<Product>> GetAllProductsAsync()
@@ -30,14 +32,24 @@ namespace NorthwindAPI.Services
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetProductByNameAsync(string name)
+        public async Task<Product?> GetProductByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            return await _context.Products
+                .Include(p => p.OrderDetails)
+                .Include(p => p.Supplier)
+                .Include(p => p.Category)
+                .Where(p => p.ProductName == name)
+                .FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<Product>> GetProductBySupplierIdAsync(int id)
+        public async Task<IEnumerable<Product>> GetProductBySupplierIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Products
+                .Include(p => p.OrderDetails)
+                .Include(p => p.Supplier)
+                .Include(p => p.Category)
+                .Where(p => p.SupplierId == id)
+                .ToListAsync();
         }
 
         public bool ProductsExsits(int id)
