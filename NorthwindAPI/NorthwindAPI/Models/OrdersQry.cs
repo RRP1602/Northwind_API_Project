@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NorthwindAPI.Models
 {
+    [ExcludeFromCodeCoverage]
+
     public partial class OrdersQry
     {
         public int OrderId { get; set; }

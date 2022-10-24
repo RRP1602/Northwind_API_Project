@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NorthwindAPI.Models
 {
+    [ExcludeFromCodeCoverage]
+
     public partial class CustomerAndSuppliersByCity
     {
         public string? City { get; set; }

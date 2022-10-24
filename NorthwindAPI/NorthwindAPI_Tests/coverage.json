@@ -1,0 +1,1990 @@
+{
+  "NorthwindAPI.dll": {
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Services\\ProductService.cs": {
+      "NorthwindAPI.Services.ProductService": {
+        "System.Boolean NorthwindAPI.Services.ProductService::ProductsExsits(System.Int32)": {
+          "Lines": {
+            "61": 0,
+            "62": 0,
+            "63": 0
+          },
+          "Branches": []
+        },
+        "System.Threading.Tasks.Task`1<System.Int32> NorthwindAPI.Services.ProductService::SaveChangesAsync()": {
+          "Lines": {
+            "72": 0,
+            "73": 0,
+            "74": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Services.ProductService::ModifyState(NorthwindAPI.Models.Product)": {
+          "Lines": {
+            "77": 0,
+            "78": 0,
+            "79": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Services.ProductService::.ctor()": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Services.ProductService::.ctor(NorthwindAPI.Models.NorthwindContext)": {
+          "Lines": {
+            "14": 1,
+            "15": 1,
+            "16": 1,
+            "17": 1
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Services.ProductService/<AddProductAsync>d__3": {
+        "System.Void NorthwindAPI.Services.ProductService/<AddProductAsync>d__3::MoveNext()": {
+          "Lines": {
+            "19": 3,
+            "20": 3,
+            "21": 3,
+            "22": 3
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Services.ProductService/<GetAllProductsAsync>d__4": {
+        "System.Void NorthwindAPI.Services.ProductService/<GetAllProductsAsync>d__4::MoveNext()": {
+          "Lines": {
+            "25": 1,
+            "26": 1,
+            "27": 1
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Services.ProductService/<GetProductByCategoryIdAsync>d__5": {
+        "System.Void NorthwindAPI.Services.ProductService/<GetProductByCategoryIdAsync>d__5::MoveNext()": {
+          "Lines": {
+            "30": 1,
+            "31": 1,
+            "32": 1
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Services.ProductService/<GetProductByIdAsync>d__6": {
+        "System.Void NorthwindAPI.Services.ProductService/<GetProductByIdAsync>d__6::MoveNext()": {
+          "Lines": {
+            "35": 2,
+            "36": 2,
+            "37": 2
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Services.ProductService/<GetProductByNameAsync>d__7": {
+        "System.Void NorthwindAPI.Services.ProductService/<GetProductByNameAsync>d__7::MoveNext()": {
+          "Lines": {
+            "40": 1,
+            "41": 1,
+            "42": 1,
+            "43": 1,
+            "44": 1,
+            "45": 1,
+            "46": 1,
+            "48": 1
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Services.ProductService/<GetProductBySupplierIdAsync>d__8": {
+        "System.Void NorthwindAPI.Services.ProductService/<GetProductBySupplierIdAsync>d__8::MoveNext()": {
+          "Lines": {
+            "51": 2,
+            "52": 2,
+            "53": 2,
+            "54": 2,
+            "55": 2,
+            "56": 2,
+            "57": 2,
+            "58": 2
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Services.ProductService/<RemoveProductAsync>d__10": {
+        "System.Void NorthwindAPI.Services.ProductService/<RemoveProductAsync>d__10::MoveNext()": {
+          "Lines": {
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\Category.cs": {
+      "NorthwindAPI.Models.Category": {
+        "System.Int32 NorthwindAPI.Models.Category::get_CategoryId()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Category::get_CategoryName()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Category::get_Description()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Byte[] NorthwindAPI.Models.Category::get_Picture()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NorthwindAPI.Models.Product> NorthwindAPI.Models.Category::get_Products()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.Category::.ctor()": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\NorthwindContext.cs": {
+      "NorthwindAPI.Models.NorthwindContext": {
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.AlphabeticalListOfProduct> NorthwindAPI.Models.NorthwindContext::get_AlphabeticalListOfProducts()": {
+          "Lines": {
+            "20": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Category> NorthwindAPI.Models.NorthwindContext::get_Categories()": {
+          "Lines": {
+            "21": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.CategorySalesFor1997> NorthwindAPI.Models.NorthwindContext::get_CategorySalesFor1997s()": {
+          "Lines": {
+            "22": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.CurrentProductList> NorthwindAPI.Models.NorthwindContext::get_CurrentProductLists()": {
+          "Lines": {
+            "23": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Customer> NorthwindAPI.Models.NorthwindContext::get_Customers()": {
+          "Lines": {
+            "24": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.CustomerAndSuppliersByCity> NorthwindAPI.Models.NorthwindContext::get_CustomerAndSuppliersByCities()": {
+          "Lines": {
+            "25": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.CustomerDemographic> NorthwindAPI.Models.NorthwindContext::get_CustomerDemographics()": {
+          "Lines": {
+            "26": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Employee> NorthwindAPI.Models.NorthwindContext::get_Employees()": {
+          "Lines": {
+            "27": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Invoice> NorthwindAPI.Models.NorthwindContext::get_Invoices()": {
+          "Lines": {
+            "28": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Order> NorthwindAPI.Models.NorthwindContext::get_Orders()": {
+          "Lines": {
+            "29": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.OrderDetail> NorthwindAPI.Models.NorthwindContext::get_OrderDetails()": {
+          "Lines": {
+            "30": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.OrderDetailsExtended> NorthwindAPI.Models.NorthwindContext::get_OrderDetailsExtendeds()": {
+          "Lines": {
+            "31": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.OrderSubtotal> NorthwindAPI.Models.NorthwindContext::get_OrderSubtotals()": {
+          "Lines": {
+            "32": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.OrdersQry> NorthwindAPI.Models.NorthwindContext::get_OrdersQries()": {
+          "Lines": {
+            "33": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Product> NorthwindAPI.Models.NorthwindContext::get_Products()": {
+          "Lines": {
+            "34": 15
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.ProductSalesFor1997> NorthwindAPI.Models.NorthwindContext::get_ProductSalesFor1997s()": {
+          "Lines": {
+            "35": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.ProductsAboveAveragePrice> NorthwindAPI.Models.NorthwindContext::get_ProductsAboveAveragePrices()": {
+          "Lines": {
+            "36": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.ProductsByCategory> NorthwindAPI.Models.NorthwindContext::get_ProductsByCategories()": {
+          "Lines": {
+            "37": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.QuarterlyOrder> NorthwindAPI.Models.NorthwindContext::get_QuarterlyOrders()": {
+          "Lines": {
+            "38": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Region> NorthwindAPI.Models.NorthwindContext::get_Regions()": {
+          "Lines": {
+            "39": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.SalesByCategory> NorthwindAPI.Models.NorthwindContext::get_SalesByCategories()": {
+          "Lines": {
+            "40": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.SalesTotalsByAmount> NorthwindAPI.Models.NorthwindContext::get_SalesTotalsByAmounts()": {
+          "Lines": {
+            "41": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Shipper> NorthwindAPI.Models.NorthwindContext::get_Shippers()": {
+          "Lines": {
+            "42": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.SummaryOfSalesByQuarter> NorthwindAPI.Models.NorthwindContext::get_SummaryOfSalesByQuarters()": {
+          "Lines": {
+            "43": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.SummaryOfSalesByYear> NorthwindAPI.Models.NorthwindContext::get_SummaryOfSalesByYears()": {
+          "Lines": {
+            "44": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Supplier> NorthwindAPI.Models.NorthwindContext::get_Suppliers()": {
+          "Lines": {
+            "45": 2
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<NorthwindAPI.Models.Territory> NorthwindAPI.Models.NorthwindContext::get_Territories()": {
+          "Lines": {
+            "46": 2
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.NorthwindContext::OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)": {
+          "Lines": {
+            "49": 1,
+            "50": 1,
+            "51": 0,
+            "53": 0,
+            "54": 0,
+            "55": 1
+          },
+          "Branches": [
+            {
+              "Line": 50,
+              "Offset": 12,
+              "EndOffset": 14,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 12,
+              "EndOffset": 29,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        },
+        "System.Void NorthwindAPI.Models.NorthwindContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "58": 1,
+            "59": 1,
+            "60": 1,
+            "61": 1,
+            "62": 1,
+            "63": 1,
+            "64": 1,
+            "65": 1,
+            "66": 1,
+            "67": 1,
+            "68": 1,
+            "69": 1,
+            "70": 1,
+            "71": 1,
+            "72": 1,
+            "73": 1,
+            "74": 1,
+            "75": 1,
+            "76": 1,
+            "77": 1,
+            "78": 2,
+            "80": 1,
+            "81": 1,
+            "82": 1,
+            "83": 1,
+            "84": 1,
+            "85": 1,
+            "86": 1,
+            "87": 1,
+            "88": 1,
+            "89": 1,
+            "90": 1,
+            "91": 2,
+            "93": 1,
+            "94": 1,
+            "95": 1,
+            "96": 1,
+            "97": 1,
+            "98": 1,
+            "99": 1,
+            "100": 1,
+            "101": 1,
+            "102": 2,
+            "104": 1,
+            "105": 1,
+            "106": 1,
+            "107": 1,
+            "108": 1,
+            "109": 1,
+            "110": 1,
+            "111": 1,
+            "112": 1,
+            "113": 1,
+            "114": 1,
+            "115": 2,
+            "117": 1,
+            "118": 1,
+            "119": 1,
+            "120": 1,
+            "121": 1,
+            "122": 1,
+            "123": 1,
+            "124": 1,
+            "125": 1,
+            "126": 1,
+            "127": 1,
+            "128": 1,
+            "129": 1,
+            "130": 1,
+            "131": 1,
+            "132": 1,
+            "133": 1,
+            "134": 1,
+            "135": 1,
+            "136": 1,
+            "137": 1,
+            "138": 1,
+            "139": 1,
+            "140": 1,
+            "141": 1,
+            "142": 1,
+            "143": 1,
+            "144": 1,
+            "145": 1,
+            "146": 1,
+            "147": 1,
+            "148": 1,
+            "149": 1,
+            "150": 1,
+            "151": 1,
+            "152": 1,
+            "153": 1,
+            "154": 1,
+            "155": 1,
+            "156": 1,
+            "157": 1,
+            "158": 1,
+            "159": 1,
+            "160": 1,
+            "161": 1,
+            "162": 1,
+            "163": 1,
+            "164": 1,
+            "165": 1,
+            "166": 1,
+            "167": 2,
+            "168": 2,
+            "170": 1,
+            "171": 1,
+            "172": 1,
+            "173": 1,
+            "174": 1,
+            "175": 1,
+            "176": 1,
+            "177": 1,
+            "178": 1,
+            "179": 1,
+            "180": 1,
+            "181": 1,
+            "182": 1,
+            "183": 1,
+            "184": 1,
+            "185": 2,
+            "187": 1,
+            "188": 1,
+            "189": 1,
+            "190": 1,
+            "191": 1,
+            "192": 1,
+            "193": 1,
+            "194": 1,
+            "195": 1,
+            "196": 1,
+            "197": 1,
+            "198": 2,
+            "200": 1,
+            "201": 1,
+            "202": 1,
+            "203": 1,
+            "204": 1,
+            "205": 1,
+            "206": 1,
+            "207": 1,
+            "208": 1,
+            "209": 1,
+            "210": 1,
+            "211": 1,
+            "212": 1,
+            "213": 1,
+            "214": 1,
+            "215": 1,
+            "216": 1,
+            "217": 1,
+            "218": 1,
+            "219": 1,
+            "220": 1,
+            "221": 1,
+            "222": 1,
+            "223": 1,
+            "224": 1,
+            "225": 1,
+            "226": 1,
+            "227": 1,
+            "228": 1,
+            "229": 1,
+            "230": 1,
+            "231": 1,
+            "232": 1,
+            "233": 1,
+            "234": 1,
+            "235": 1,
+            "236": 1,
+            "237": 1,
+            "238": 1,
+            "239": 1,
+            "240": 1,
+            "241": 1,
+            "242": 1,
+            "243": 1,
+            "244": 1,
+            "245": 1,
+            "246": 1,
+            "247": 1,
+            "248": 1,
+            "249": 1,
+            "250": 1,
+            "251": 1,
+            "252": 1,
+            "253": 1,
+            "254": 1,
+            "255": 1,
+            "256": 1,
+            "257": 1,
+            "258": 1,
+            "259": 1,
+            "260": 2,
+            "261": 2,
+            "263": 1,
+            "264": 1,
+            "265": 1,
+            "266": 1,
+            "267": 1,
+            "268": 1,
+            "269": 1,
+            "270": 1,
+            "271": 1,
+            "272": 1,
+            "273": 1,
+            "274": 1,
+            "275": 1,
+            "276": 1,
+            "277": 1,
+            "278": 1,
+            "279": 1,
+            "280": 1,
+            "281": 1,
+            "282": 1,
+            "283": 1,
+            "284": 1,
+            "285": 1,
+            "286": 1,
+            "287": 1,
+            "288": 1,
+            "289": 1,
+            "290": 1,
+            "291": 1,
+            "292": 1,
+            "293": 1,
+            "294": 1,
+            "295": 1,
+            "296": 1,
+            "297": 1,
+            "298": 1,
+            "299": 1,
+            "300": 1,
+            "301": 1,
+            "302": 1,
+            "303": 1,
+            "304": 1,
+            "305": 1,
+            "306": 1,
+            "307": 1,
+            "308": 1,
+            "309": 1,
+            "310": 1,
+            "311": 1,
+            "312": 1,
+            "313": 1,
+            "314": 1,
+            "315": 1,
+            "316": 1,
+            "317": 1,
+            "318": 1,
+            "319": 2,
+            "321": 1,
+            "322": 1,
+            "323": 1,
+            "324": 1,
+            "325": 1,
+            "326": 1,
+            "327": 1,
+            "328": 1,
+            "329": 1,
+            "330": 1,
+            "331": 1,
+            "332": 1,
+            "333": 1,
+            "334": 1,
+            "335": 1,
+            "336": 1,
+            "337": 1,
+            "338": 1,
+            "339": 1,
+            "340": 1,
+            "341": 1,
+            "342": 1,
+            "343": 1,
+            "344": 1,
+            "345": 1,
+            "346": 1,
+            "347": 1,
+            "348": 1,
+            "349": 1,
+            "350": 1,
+            "351": 1,
+            "352": 1,
+            "353": 1,
+            "354": 1,
+            "355": 1,
+            "356": 1,
+            "357": 1,
+            "358": 1,
+            "359": 1,
+            "360": 1,
+            "361": 1,
+            "362": 1,
+            "363": 1,
+            "364": 1,
+            "365": 1,
+            "366": 1,
+            "367": 1,
+            "368": 1,
+            "369": 1,
+            "370": 1,
+            "371": 1,
+            "372": 1,
+            "373": 1,
+            "374": 1,
+            "375": 1,
+            "376": 1,
+            "377": 1,
+            "378": 1,
+            "379": 1,
+            "380": 1,
+            "381": 1,
+            "382": 1,
+            "383": 1,
+            "384": 2,
+            "386": 1,
+            "387": 1,
+            "388": 1,
+            "389": 1,
+            "390": 1,
+            "391": 1,
+            "392": 1,
+            "393": 1,
+            "394": 1,
+            "395": 1,
+            "396": 1,
+            "397": 1,
+            "398": 1,
+            "399": 1,
+            "400": 1,
+            "401": 1,
+            "402": 1,
+            "403": 1,
+            "404": 1,
+            "405": 1,
+            "406": 1,
+            "407": 1,
+            "408": 1,
+            "409": 1,
+            "410": 1,
+            "411": 1,
+            "412": 1,
+            "413": 1,
+            "414": 1,
+            "415": 1,
+            "416": 1,
+            "417": 1,
+            "418": 1,
+            "419": 1,
+            "420": 2,
+            "422": 1,
+            "423": 1,
+            "424": 1,
+            "425": 1,
+            "426": 1,
+            "427": 1,
+            "428": 1,
+            "429": 1,
+            "430": 1,
+            "431": 1,
+            "432": 1,
+            "433": 1,
+            "434": 1,
+            "435": 1,
+            "436": 1,
+            "437": 2,
+            "439": 1,
+            "440": 1,
+            "441": 1,
+            "442": 1,
+            "443": 1,
+            "444": 1,
+            "445": 1,
+            "446": 1,
+            "447": 1,
+            "448": 2,
+            "450": 1,
+            "451": 1,
+            "452": 1,
+            "453": 1,
+            "454": 1,
+            "455": 1,
+            "456": 1,
+            "457": 1,
+            "458": 1,
+            "459": 1,
+            "460": 1,
+            "461": 1,
+            "462": 1,
+            "463": 1,
+            "464": 1,
+            "465": 1,
+            "466": 1,
+            "467": 1,
+            "468": 1,
+            "469": 1,
+            "470": 1,
+            "471": 1,
+            "472": 1,
+            "473": 1,
+            "474": 1,
+            "475": 1,
+            "476": 1,
+            "477": 1,
+            "478": 1,
+            "479": 1,
+            "480": 1,
+            "481": 1,
+            "482": 1,
+            "483": 1,
+            "484": 1,
+            "485": 1,
+            "486": 1,
+            "487": 1,
+            "488": 1,
+            "489": 1,
+            "490": 1,
+            "491": 1,
+            "492": 1,
+            "493": 1,
+            "494": 1,
+            "495": 1,
+            "496": 2,
+            "498": 1,
+            "499": 1,
+            "500": 1,
+            "501": 1,
+            "502": 1,
+            "503": 1,
+            "504": 1,
+            "505": 1,
+            "506": 1,
+            "507": 1,
+            "508": 1,
+            "509": 1,
+            "510": 1,
+            "511": 1,
+            "512": 1,
+            "513": 1,
+            "514": 1,
+            "515": 1,
+            "516": 1,
+            "517": 1,
+            "518": 1,
+            "519": 1,
+            "520": 1,
+            "521": 1,
+            "522": 1,
+            "523": 1,
+            "524": 1,
+            "525": 1,
+            "526": 1,
+            "527": 1,
+            "528": 1,
+            "529": 1,
+            "530": 1,
+            "531": 1,
+            "532": 1,
+            "533": 1,
+            "534": 1,
+            "535": 1,
+            "536": 1,
+            "537": 1,
+            "538": 1,
+            "539": 2,
+            "541": 1,
+            "542": 1,
+            "543": 1,
+            "544": 1,
+            "545": 1,
+            "546": 1,
+            "547": 1,
+            "548": 1,
+            "549": 1,
+            "550": 1,
+            "551": 1,
+            "552": 2,
+            "554": 1,
+            "555": 1,
+            "556": 1,
+            "557": 1,
+            "558": 1,
+            "559": 1,
+            "560": 1,
+            "561": 1,
+            "562": 1,
+            "563": 2,
+            "565": 1,
+            "566": 1,
+            "567": 1,
+            "568": 1,
+            "569": 1,
+            "570": 1,
+            "571": 1,
+            "572": 1,
+            "573": 1,
+            "574": 1,
+            "575": 1,
+            "576": 2,
+            "578": 1,
+            "579": 1,
+            "580": 1,
+            "581": 1,
+            "582": 1,
+            "583": 1,
+            "584": 1,
+            "585": 1,
+            "586": 1,
+            "587": 1,
+            "588": 1,
+            "589": 1,
+            "590": 1,
+            "591": 1,
+            "592": 1,
+            "593": 1,
+            "594": 2,
+            "596": 1,
+            "597": 1,
+            "598": 1,
+            "599": 1,
+            "600": 1,
+            "601": 1,
+            "602": 1,
+            "603": 1,
+            "604": 1,
+            "605": 1,
+            "606": 1,
+            "607": 1,
+            "608": 1,
+            "609": 1,
+            "610": 2,
+            "612": 1,
+            "613": 1,
+            "614": 1,
+            "615": 1,
+            "616": 1,
+            "617": 1,
+            "618": 1,
+            "619": 1,
+            "620": 1,
+            "621": 1,
+            "622": 1,
+            "623": 1,
+            "624": 1,
+            "625": 2,
+            "627": 1,
+            "628": 1,
+            "629": 1,
+            "630": 1,
+            "631": 1,
+            "632": 1,
+            "633": 1,
+            "634": 1,
+            "635": 1,
+            "636": 1,
+            "637": 1,
+            "638": 1,
+            "639": 1,
+            "640": 2,
+            "642": 1,
+            "643": 1,
+            "644": 1,
+            "645": 1,
+            "646": 1,
+            "647": 1,
+            "648": 1,
+            "649": 2,
+            "651": 1,
+            "652": 1,
+            "653": 1,
+            "654": 1,
+            "655": 1,
+            "656": 1,
+            "657": 1,
+            "658": 1,
+            "659": 1,
+            "660": 1,
+            "661": 1,
+            "662": 2,
+            "664": 1,
+            "665": 1,
+            "666": 1,
+            "667": 1,
+            "668": 1,
+            "669": 1,
+            "670": 1,
+            "671": 1,
+            "672": 1,
+            "673": 1,
+            "674": 1,
+            "675": 2,
+            "677": 1,
+            "678": 1,
+            "679": 1,
+            "680": 1,
+            "681": 1,
+            "682": 1,
+            "683": 1,
+            "684": 1,
+            "685": 1,
+            "686": 1,
+            "687": 1,
+            "688": 1,
+            "689": 1,
+            "690": 1,
+            "691": 1,
+            "692": 1,
+            "693": 1,
+            "694": 1,
+            "695": 1,
+            "696": 1,
+            "697": 1,
+            "698": 1,
+            "699": 1,
+            "700": 1,
+            "701": 1,
+            "702": 1,
+            "703": 1,
+            "704": 1,
+            "705": 1,
+            "706": 2,
+            "708": 1,
+            "709": 1,
+            "710": 1,
+            "711": 1,
+            "712": 1,
+            "713": 1,
+            "714": 1,
+            "715": 1,
+            "716": 1,
+            "717": 1,
+            "718": 1,
+            "719": 1,
+            "720": 1,
+            "721": 1,
+            "722": 1,
+            "723": 1,
+            "724": 1,
+            "725": 1,
+            "726": 1,
+            "727": 1,
+            "728": 2,
+            "731": 1
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.NorthwindContext::.ctor()": {
+          "Lines": {
+            "11": 0,
+            "12": 0,
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.NorthwindContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<NorthwindAPI.Models.NorthwindContext>)": {
+          "Lines": {
+            "16": 1,
+            "17": 1,
+            "18": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\Order.cs": {
+      "NorthwindAPI.Models.Order": {
+        "System.Int32 NorthwindAPI.Models.Order::get_OrderId()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Order::get_CustomerId()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> NorthwindAPI.Models.Order::get_EmployeeId()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.DateTime> NorthwindAPI.Models.Order::get_OrderDate()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.DateTime> NorthwindAPI.Models.Order::get_RequiredDate()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.DateTime> NorthwindAPI.Models.Order::get_ShippedDate()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> NorthwindAPI.Models.Order::get_ShipVia()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Decimal> NorthwindAPI.Models.Order::get_Freight()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Order::get_ShipName()": {
+          "Lines": {
+            "21": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Order::get_ShipAddress()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Order::get_ShipCity()": {
+          "Lines": {
+            "23": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Order::get_ShipRegion()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Order::get_ShipPostalCode()": {
+          "Lines": {
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Order::get_ShipCountry()": {
+          "Lines": {
+            "26": 0
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.Customer NorthwindAPI.Models.Order::get_Customer()": {
+          "Lines": {
+            "28": 0
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.Employee NorthwindAPI.Models.Order::get_Employee()": {
+          "Lines": {
+            "29": 0
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.Shipper NorthwindAPI.Models.Order::get_ShipViaNavigation()": {
+          "Lines": {
+            "30": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NorthwindAPI.Models.OrderDetail> NorthwindAPI.Models.Order::get_OrderDetails()": {
+          "Lines": {
+            "31": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.Order::.ctor()": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\OrderDetail.cs": {
+      "NorthwindAPI.Models.OrderDetail": {
+        "System.Int32 NorthwindAPI.Models.OrderDetail::get_OrderId()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 NorthwindAPI.Models.OrderDetail::get_ProductId()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Decimal NorthwindAPI.Models.OrderDetail::get_UnitPrice()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Int16 NorthwindAPI.Models.OrderDetail::get_Quantity()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Single NorthwindAPI.Models.OrderDetail::get_Discount()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.Order NorthwindAPI.Models.OrderDetail::get_Order()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.Product NorthwindAPI.Models.OrderDetail::get_Product()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\OrderDetailsExtended.cs": {
+      "NorthwindAPI.Models.OrderDetailsExtended": {
+        "System.Int32 NorthwindAPI.Models.OrderDetailsExtended::get_OrderId()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 NorthwindAPI.Models.OrderDetailsExtended::get_ProductId()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.OrderDetailsExtended::get_ProductName()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Decimal NorthwindAPI.Models.OrderDetailsExtended::get_UnitPrice()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Int16 NorthwindAPI.Models.OrderDetailsExtended::get_Quantity()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Single NorthwindAPI.Models.OrderDetailsExtended::get_Discount()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Decimal> NorthwindAPI.Models.OrderDetailsExtended::get_ExtendedPrice()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\Product.cs": {
+      "NorthwindAPI.Models.Product": {
+        "System.Int32 NorthwindAPI.Models.Product::get_ProductId()": {
+          "Lines": {
+            "13": 9
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Product::get_ProductName()": {
+          "Lines": {
+            "14": 25
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> NorthwindAPI.Models.Product::get_SupplierId()": {
+          "Lines": {
+            "15": 15
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> NorthwindAPI.Models.Product::get_CategoryId()": {
+          "Lines": {
+            "16": 15
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Product::get_QuantityPerUnit()": {
+          "Lines": {
+            "17": 7
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Decimal> NorthwindAPI.Models.Product::get_UnitPrice()": {
+          "Lines": {
+            "18": 15
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int16> NorthwindAPI.Models.Product::get_UnitsInStock()": {
+          "Lines": {
+            "19": 7
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int16> NorthwindAPI.Models.Product::get_UnitsOnOrder()": {
+          "Lines": {
+            "20": 7
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int16> NorthwindAPI.Models.Product::get_ReorderLevel()": {
+          "Lines": {
+            "21": 7
+          },
+          "Branches": []
+        },
+        "System.Boolean NorthwindAPI.Models.Product::get_Discontinued()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.Category NorthwindAPI.Models.Product::get_Category()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.Supplier NorthwindAPI.Models.Product::get_Supplier()": {
+          "Lines": {
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NorthwindAPI.Models.OrderDetail> NorthwindAPI.Models.Product::get_OrderDetails()": {
+          "Lines": {
+            "26": 8
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.Product::.ctor()": {
+          "Lines": {
+            "8": 8,
+            "9": 8,
+            "10": 8,
+            "11": 8
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\Supplier.cs": {
+      "NorthwindAPI.Models.Supplier": {
+        "System.Int32 NorthwindAPI.Models.Supplier::get_SupplierId()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_CompanyName()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_ContactName()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_ContactTitle()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_Address()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_City()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_Region()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_PostalCode()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_Country()": {
+          "Lines": {
+            "21": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_Phone()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_Fax()": {
+          "Lines": {
+            "23": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.Supplier::get_HomePage()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NorthwindAPI.Models.Product> NorthwindAPI.Models.Supplier::get_Products()": {
+          "Lines": {
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.Supplier::.ctor()": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\DTO\\DTOCategory.cs": {
+      "NorthwindAPI.Models.DTO.DTOCategory": {
+        "System.Int32 NorthwindAPI.Models.DTO.DTOCategory::get_CategoryId()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.DTO.DTOCategory::get_CategoryName()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.DTO.DTOCategory::get_CategoryDescription()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 NorthwindAPI.Models.DTO.DTOCategory::get_TotalProducts()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NorthwindAPI.Models.DTO.DTOProduct> NorthwindAPI.Models.DTO.DTOCategory::get_Products()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.DTO.DTOCategory::.ctor()": {
+          "Lines": {
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\DTO\\DTOOrderDetails.cs": {
+      "NorthwindAPI.Models.DTO.DTOOrderDetails": {
+        "System.Int32 NorthwindAPI.Models.DTO.DTOOrderDetails::get_OrderId()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 NorthwindAPI.Models.DTO.DTOOrderDetails::get_ProductId()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Single NorthwindAPI.Models.DTO.DTOOrderDetails::get_TotalPrice()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Single NorthwindAPI.Models.DTO.DTOOrderDetails::get_TotalDiscount()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 NorthwindAPI.Models.DTO.DTOOrderDetails::get_TotalProducts()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NorthwindAPI.Models.DTO.DTOProduct> NorthwindAPI.Models.DTO.DTOOrderDetails::get_Products()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.DTO.DTOOrderDetails::.ctor()": {
+          "Lines": {
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\DTO\\DTOProduct.cs": {
+      "NorthwindAPI.Models.DTO.DTOProduct": {
+        "System.Int32 NorthwindAPI.Models.DTO.DTOProduct::get_ProductId()": {
+          "Lines": {
+            "5": 7
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.DTO.DTOProduct::get_ProductName()": {
+          "Lines": {
+            "6": 11
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> NorthwindAPI.Models.DTO.DTOProduct::get_SupplierId()": {
+          "Lines": {
+            "7": 5
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> NorthwindAPI.Models.DTO.DTOProduct::get_CategoryId()": {
+          "Lines": {
+            "8": 5
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Decimal> NorthwindAPI.Models.DTO.DTOProduct::get_UnitPrice()": {
+          "Lines": {
+            "9": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Models\\DTO\\DTOSupplier.cs": {
+      "NorthwindAPI.Models.DTO.DTOSupplier": {
+        "System.Int32 NorthwindAPI.Models.DTO.DTOSupplier::get_SupplierId()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.DTO.DTOSupplier::get_CompanyName()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.DTO.DTOSupplier::get_ContactName()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.DTO.DTOSupplier::get_ContactTitle()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.String NorthwindAPI.Models.DTO.DTOSupplier::get_Country()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 NorthwindAPI.Models.DTO.DTOSupplier::get_TotalProducts()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.ICollection`1<NorthwindAPI.Models.DTO.DTOProduct> NorthwindAPI.Models.DTO.DTOSupplier::get_Products()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Models.DTO.DTOSupplier::.ctor()": {
+          "Lines": {
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Controllers\\ProductsController.cs": {
+      "NorthwindAPI.Controllers.ProductsController": {
+        "System.Boolean NorthwindAPI.Controllers.ProductsController::ProductExists(System.Int32)": {
+          "Lines": {
+            "160": 2,
+            "163": 2,
+            "164": 2
+          },
+          "Branches": []
+        },
+        "System.Void NorthwindAPI.Controllers.ProductsController::.ctor(NorthwindAPI.Services.IProductService)": {
+          "Lines": {
+            "22": 8,
+            "23": 8,
+            "24": 8,
+            "25": 8
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<>c": {
+        "NorthwindAPI.Models.DTO.DTOProduct NorthwindAPI.Controllers.ProductsController/<>c::<GetProducts>b__2_0(NorthwindAPI.Models.Product)": {
+          "Lines": {
+            "32": 2
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.DTO.DTOProduct NorthwindAPI.Controllers.ProductsController/<>c::<GetProductByCategoryId>b__5_0(NorthwindAPI.Models.Product)": {
+          "Lines": {
+            "70": 0
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.DTO.DTOProduct NorthwindAPI.Controllers.ProductsController/<>c::<GetProductBySupplierId>b__6_0(NorthwindAPI.Models.Product)": {
+          "Lines": {
+            "85": 0
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<DeleteProduct>d__9": {
+        "System.Void NorthwindAPI.Controllers.ProductsController/<DeleteProduct>d__9::MoveNext()": {
+          "Lines": {
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "150": 0,
+            "151": 0,
+            "154": 0,
+            "156": 0,
+            "157": 0
+          },
+          "Branches": [
+            {
+              "Line": 149,
+              "Offset": 175,
+              "EndOffset": 177,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 149,
+              "Offset": 175,
+              "EndOffset": 195,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<GetProduct>d__3": {
+        "System.Void NorthwindAPI.Controllers.ProductsController/<GetProduct>d__3::MoveNext()": {
+          "Lines": {
+            "39": 2,
+            "40": 2,
+            "42": 2,
+            "43": 1,
+            "44": 1,
+            "47": 1,
+            "48": 2
+          },
+          "Branches": [
+            {
+              "Line": 42,
+              "Offset": 164,
+              "EndOffset": 166,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 42,
+              "Offset": 164,
+              "EndOffset": 186,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<GetProductByCategoryId>d__5": {
+        "System.Void NorthwindAPI.Controllers.ProductsController/<GetProductByCategoryId>d__5::MoveNext()": {
+          "Lines": {
+            "67": 0,
+            "68": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "77": 0,
+            "78": 0
+          },
+          "Branches": [
+            {
+              "Line": 72,
+              "Offset": 217,
+              "EndOffset": 219,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 217,
+              "EndOffset": 239,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<GetProductByName>d__4": {
+        "System.Void NorthwindAPI.Controllers.ProductsController/<GetProductByName>d__4::MoveNext()": {
+          "Lines": {
+            "53": 0,
+            "54": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "61": 0,
+            "62": 0
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 164,
+              "EndOffset": 166,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 164,
+              "EndOffset": 186,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<GetProductBySupplierId>d__6": {
+        "System.Void NorthwindAPI.Controllers.ProductsController/<GetProductBySupplierId>d__6::MoveNext()": {
+          "Lines": {
+            "82": 0,
+            "83": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "92": 0,
+            "93": 0
+          },
+          "Branches": [
+            {
+              "Line": 87,
+              "Offset": 217,
+              "EndOffset": 219,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 87,
+              "Offset": 217,
+              "EndOffset": 239,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<GetProducts>d__2": {
+        "System.Void NorthwindAPI.Controllers.ProductsController/<GetProducts>d__2::MoveNext()": {
+          "Lines": {
+            "30": 1,
+            "31": 1,
+            "33": 1,
+            "34": 1
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<PostProduct>d__8": {
+        "System.Void NorthwindAPI.Controllers.ProductsController/<PostProduct>d__8::MoveNext()": {
+          "Lines": {
+            "138": 0,
+            "139": 0,
+            "141": 0,
+            "142": 0
+          },
+          "Branches": []
+        }
+      },
+      "NorthwindAPI.Controllers.ProductsController/<PutProduct>d__7": {
+        "System.Void NorthwindAPI.Controllers.ProductsController/<PutProduct>d__7::MoveNext()": {
+          "Lines": {
+            "99": 4,
+            "100": 4,
+            "101": 1,
+            "102": 1,
+            "105": 3,
+            "108": 3,
+            "109": 3,
+            "110": 3,
+            "111": 3,
+            "116": 3,
+            "117": 3,
+            "118": 1,
+            "119": 2,
+            "120": 2,
+            "121": 2,
+            "122": 1,
+            "123": 1,
+            "126": 1,
+            "127": 1,
+            "131": 1,
+            "132": 3
+          },
+          "Branches": [
+            {
+              "Line": 100,
+              "Offset": 50,
+              "EndOffset": 52,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 100,
+              "Offset": 50,
+              "EndOffset": 70,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 3
+            },
+            {
+              "Line": 108,
+              "Offset": 233,
+              "EndOffset": 235,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 3
+            },
+            {
+              "Line": 108,
+              "Offset": 233,
+              "EndOffset": 248,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 109,
+              "Offset": 274,
+              "EndOffset": 276,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 109,
+              "Offset": 274,
+              "EndOffset": 288,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 3
+            },
+            {
+              "Line": 110,
+              "Offset": 320,
+              "EndOffset": 322,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 3
+            },
+            {
+              "Line": 110,
+              "Offset": 320,
+              "EndOffset": 335,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 111,
+              "Offset": 369,
+              "EndOffset": 371,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 3
+            },
+            {
+              "Line": 111,
+              "Offset": 369,
+              "EndOffset": 384,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 121,
+              "Offset": 541,
+              "EndOffset": 543,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 1
+            },
+            {
+              "Line": 121,
+              "Offset": 541,
+              "EndOffset": 558,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\Lewis\\Dev\\NWGroup\\NorthwindAPI\\NorthwindAPI\\Controllers\\Utils.cs": {
+      "NorthwindAPI.Controllers.Utils": {
+        "NorthwindAPI.Models.DTO.DTOProduct NorthwindAPI.Controllers.Utils::ProductToDto(NorthwindAPI.Models.Product)": {
+          "Lines": {
+            "9": 2,
+            "10": 2,
+            "11": 2,
+            "12": 2,
+            "13": 2,
+            "14": 2,
+            "15": 2,
+            "16": 2,
+            "17": 2,
+            "18": 2
+          },
+          "Branches": []
+        },
+        "NorthwindAPI.Models.Product NorthwindAPI.Controllers.Utils::DtoToProduct(NorthwindAPI.Models.DTO.DTOProduct)": {
+          "Lines": {
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}
