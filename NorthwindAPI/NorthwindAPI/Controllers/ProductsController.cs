@@ -66,13 +66,12 @@ namespace NorthwindAPI.Controllers
         public async Task<ActionResult<IEnumerable<DTOProduct>>> GetProductByCategoryId(int categoryId)
         {
             var product = await _service.GetProductByCategoryIdAsync(categoryId);
-
-            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
-
             if (product == null)
             {
                 return NotFound();
             }
+
+            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
 
             return dto;
         }
@@ -82,12 +81,12 @@ namespace NorthwindAPI.Controllers
         {
             var product = await _service.GetProductBySupplierIdAsync(supplierId);
 
-            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
-
             if (product == null)
             {
                 return NotFound();
             }
+
+            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
 
             return dto;
         }
@@ -105,9 +104,9 @@ namespace NorthwindAPI.Controllers
             var product = await _service.GetProductByIdAsync(id);
 
 
-            product.CategoryId = dto.CategoryId ?? product.CategoryId;
+            product.CategoryId = dto.Category.CategoryId;
             product.ProductName = dto.ProductName ?? product.ProductName;
-            product.SupplierId = dto.SupplierId ?? product.SupplierId;
+            product.SupplierId = dto.Supplier.SupplierId;
             product.UnitPrice = dto.UnitPrice ?? product.UnitPrice;
 
             //_service.Entry(product).State = EntityState.Modified;
@@ -160,7 +159,7 @@ namespace NorthwindAPI.Controllers
         {
 
             //return _service.Products.Any(e => e.ProductId == id);
-            return _service.ProductsExsits(id);
+            return _service.ProductsExists(id);
         }
     }
 }

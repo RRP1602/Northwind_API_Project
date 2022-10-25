@@ -10,10 +10,10 @@ namespace NorthwindAPI.Controllers
             return new DTOProduct
             {
                 ProductId = product.ProductId,
-                CategoryId = product.CategoryId,
                 ProductName = product.ProductName,
-                SupplierId = product.SupplierId,
-                UnitPrice = product.UnitPrice
+                UnitPrice = product.UnitPrice,
+                Category = Utils.CategoryToDto(product.Category),
+                Supplier = Utils.SupplierToDto(product.Supplier)
             };
         }
 
@@ -22,10 +22,95 @@ namespace NorthwindAPI.Controllers
             return new Product
             {
                 ProductId = dto.ProductId,
-                CategoryId = dto.CategoryId,
+                Category = Utils.DtoToCategory(dto.Category),
                 ProductName = dto.ProductName,
-                SupplierId = dto.SupplierId,
+                Supplier = Utils.DtoToSupplier(dto.Supplier),
                 UnitPrice = dto.UnitPrice
+            };
+        }
+
+        public static DTOSupplier SupplierToDto(Supplier supplier)
+        {
+            if (supplier == null) return new DTOSupplier
+            {
+
+            };
+            return new DTOSupplier
+            {
+                SupplierId = supplier.SupplierId,
+                CompanyName = supplier.CompanyName,
+                TotalProducts = supplier.Products.Count(),
+                Country = supplier.Country
+            };
+        }
+
+        public static Supplier DtoToSupplier(DTOSupplier dto)
+        {
+            return new Supplier
+            {
+
+                SupplierId = dto.SupplierId,
+                CompanyName = dto.CompanyName,
+                Country = dto.Country
+                
+            };
+        }
+
+        //public static DTOOrderDetails OrderDetailsToDto(OrderDetail orderDetails)
+        //{
+        //    if (orderDetails == null) return new DTOOrderDetails
+        //    {
+
+        //    };
+
+        //    return new DTOOrderDetails
+        //    {
+        //        OrderId = orderDetails.OrderId,
+        //        ProductId = orderDetails.ProductId,
+        //        TotalPrice = (float)orderDetails.UnitPrice,
+        //        TotalDiscount = orderDetails.Discount,
+        //        TotalProducts = orderDetails.Quantity
+        //    };
+        //}
+
+        //public static OrderDetail DtoToOrderDetails(DTOOrderDetails dto)
+        //{
+        //    return new OrderDetail
+        //    {
+
+        //        OrderId = dto.OrderId,
+        //        ProductId = dto.ProductId,
+        //        UnitPrice = (decimal)dto.TotalPrice,
+        //        Discount = dto.TotalDiscount,
+        //        Quantity = (short)dto.TotalProducts
+
+        //    };
+        //}
+
+        public static DTOCategory CategoryToDto(Category category)
+        {
+            if(category == null) return new DTOCategory
+            {
+   
+            };
+
+            return new DTOCategory
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName
+                
+                
+            };
+        }
+
+        public static Category DtoToCategory(DTOCategory dto)
+        {
+            return new Category
+            {
+
+                CategoryId = dto.CategoryId,
+                CategoryName = dto.CategoryName
+
             };
         }
 

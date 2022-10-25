@@ -8,6 +8,7 @@
     1. [How to Use](#how-to-use)
 3. [Web API](#web-api)
 4. [Contributors](#contributors) 
+
 # About the Project
 We have created a web api using the northwind database. Our project allows the user to mainpulate data within the products table within the database. The user can get products using the "ProductId", "CategoryId", "SupplierId" or the "Product Name". They can also add, delete and edit the products. tHey can view the producs using many different filters such as most popular products
 
@@ -20,7 +21,6 @@ Clone the repo
 ```
 https://github.com/RRP1602/Northwind_API_Project.git 
 ```
-
 # How to use
 - We recommend having the latest Visual Studio installed as well as C#. 
 - You can use the swagger UI but having Postman is a much better option. 
@@ -35,13 +35,6 @@ A Web API is an application programming interface for the Web. A web API can be 
 ![Postman](README_Screenshots/webapi_screenshots.PNG)
 
 Above is visual represenation of how a Web APi works. 
-
-
-- We recommend having the latest Visual Studio installed as well as C#.
-
-# Web API
-A Web API is an application programming interface for the Web. A web API can be made using .Net or Java and this project we have used .Net. 
-
 
 # Contributors 
 - Lewis James Kellet(Scrum Master)
