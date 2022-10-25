@@ -155,13 +155,20 @@ namespace NorthwindAPI.Controllers
             return NoContent();
         }
 
-        public async Task<IEnumerable<Product>> GetDiscontinuedProducts()
+        // GET: api/Products/Discontinued
+        [HttpGet("Discontinued")]
+        public async Task<IEnumerable<DTOProduct>> GetDiscontinuedProducts()
         {
             var all = await _service.GetAllProductsAsync();
-            return all.ToList().Where(p => p.Discontinued).ToList();
+           
+            var discontinued = all.ToList().Where(p => p.Discontinued).ToList();
+            return discontinued.Select(p => Utils.ProductToDto(p)).ToList();
         }
 
-        public async Task<IEnumerable<Product>> GetProductsWithHighestReorderLevel()
+
+        // GET: api/Products/HighestReorderLevel
+        [HttpGet("HighestReorderLevel")]
+        public async Task<IEnumerable<DTOProduct>> GetProductsWithHighestReorderLevel()
         {
             var all = await _service.GetAllProductsAsync();
             var reorder = all.ToList()
@@ -169,20 +176,26 @@ namespace NorthwindAPI.Controllers
                 .OrderByDescending(p => p.ReorderLevel)
                 .ToList();
 
-            return reorder.TakeWhile(p => p.ReorderLevel == reorder.First().ReorderLevel);
+            var reordedF = reorder.TakeWhile(p => p.ReorderLevel == reorder.First().ReorderLevel);
+            return reordedF.Select(p => Utils.ProductToDto(p)).ToList();
         }
 
-        public async Task<IEnumerable<Product>> GetProductWithHighestStock()
+        // GET: api/Products/HighestStock
+        [HttpGet("HighestStock")]
+        public async Task<IEnumerable<DTOProduct>> GetProductWithHighestStock()
         {
             var all = await _service.GetAllProductsAsync();
             var highest = all.ToList()
                 .Select(p => p)
                 .OrderByDescending(p => p.UnitsInStock)
                 .ToList();
-            return highest.TakeWhile(p => p.UnitsInStock == highest.First().UnitsInStock).ToList();
+            var highestF = highest.TakeWhile(p => p.UnitsInStock == highest.First().UnitsInStock).ToList();
+            return highestF.Select(p => Utils.ProductToDto(p)).ToList();
         }
 
-        public async Task<IEnumerable<Product>> GetProductsWithLowestStock()
+        // GET: api/Products/LowestStock
+        [HttpGet("LowestStock")]
+        public async Task<IEnumerable<DTOProduct>> GetProductsWithLowestStock()
         {
             var all = await _service.GetAllProductsAsync();
             var lowest = all.ToList()
@@ -190,7 +203,8 @@ namespace NorthwindAPI.Controllers
                 .OrderBy(p => p.UnitsInStock)
                 .ToList();
 
-            return lowest.TakeWhile(p => p.UnitsInStock == lowest.First().UnitsInStock);
+            var lowestF =  lowest.TakeWhile(p => p.UnitsInStock == lowest.First().UnitsInStock);
+            return lowestF.Select(p => Utils.ProductToDto(p)).ToList();
         }
 
         public Task<Product> GetBestSellingProduct()
