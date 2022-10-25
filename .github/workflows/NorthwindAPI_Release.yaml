@@ -22,9 +22,9 @@ jobs:
     - name: Publish
       run: dotnet publish ./NorthwindAPI/NorthwindAPI.csproj -c Release -o ./output
     - name: Package
-      run: zip -r ${{ github.event.repository.name }}.zip ./output/*
+      run: zip -r release.zip ./output/*
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: ${{ github.event.repository.name }}.zip
+        files: release.zip
