@@ -1,5 +1,5 @@
 # Northwind_API_Project 
-[![Coverage Status](https://coveralls.io/repos/github/RRP1602/Northwind_API_Project/badge.svg?branch=ci)](https://coveralls.io/github/RRP1602/Northwind_API_Project?branch=ci)
+[![Coverage Status](https://coveralls.io/repos/github/RRP1602/Northwind_API_Project/badge.svg?branch=Tests)](https://coveralls.io/github/RRP1602/Northwind_API_Project?branch=ci)
 
 ## Table Of Contents
 
