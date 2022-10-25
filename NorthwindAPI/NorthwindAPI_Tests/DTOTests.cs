@@ -14,8 +14,6 @@ namespace NorthwindAPI_Tests
             {
                 ProductId = 1,
                 ProductName = "TEST",
-                SupplierId = 1,
-                CategoryId = 2,
                 UnitPrice = 3
             }; 
 
@@ -23,8 +21,6 @@ namespace NorthwindAPI_Tests
             Assert.That(result, Is.InstanceOf<DTOProduct>());
             Assert.That(result.ProductId, Is.EqualTo(1));
             Assert.That(result.ProductName, Is.EqualTo("TEST"));
-            Assert.That(result.SupplierId, Is.EqualTo(1));
-            Assert.That(result.CategoryId, Is.EqualTo(2));
             Assert.That(result.UnitPrice, Is.EqualTo(3));
         }
 
@@ -35,8 +31,6 @@ namespace NorthwindAPI_Tests
             {
                 SupplierId = 1,
                 CompanyName = "TEST",
-                ContactName = "TEST",
-                ContactTitle = "TEST",
                 Country = "TEST",
                 TotalProducts = 1,
             };
@@ -45,8 +39,6 @@ namespace NorthwindAPI_Tests
             Assert.That(result, Is.InstanceOf<DTOSupplier>());
             Assert.That(result.SupplierId, Is.EqualTo(1));
             Assert.That(result.CompanyName, Is.EqualTo("TEST"));
-            Assert.That(result.ContactName, Is.EqualTo("TEST"));
-            Assert.That(result.ContactTitle, Is.EqualTo("TEST"));
             Assert.That(result.Country, Is.EqualTo("TEST"));
             Assert.That(result.TotalProducts, Is.EqualTo(1));
         }
@@ -58,16 +50,12 @@ namespace NorthwindAPI_Tests
             {
                 CategoryId = 1,
                 CategoryName = "TEST",
-                CategoryDescription = "TEST",
-                TotalProducts = 1,
             };
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result, Is.InstanceOf<DTOCategory>());
             Assert.That(result.CategoryId, Is.EqualTo(1));
             Assert.That(result.CategoryName, Is.EqualTo("TEST"));
-            Assert.That(result.CategoryDescription, Is.EqualTo("TEST"));
-            Assert.That(result.TotalProducts, Is.EqualTo(1));
         }
 
         [Test]
