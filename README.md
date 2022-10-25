@@ -11,7 +11,7 @@
 4. [Contributors](#contributors) 
 
 # About the Project
-We have created a web API using the northwind database. Our project allows the user to manipulate data within the products table within the database. The user can get products using the "ProductId", "CategoryId", "SupplierId" or the "Product Name". They can also add, delete and edit the products. They can view the products using many different filters such as the most popular products
+We have created a web API using the northwind database. Our project allows the user to manipulate data within the products table within the database. The user can get products using the "ProductId", "CategoryId", "SupplierId" or the "Product Name". They can also add, delete and edit the products. They can view the products using many different filters such as the most popular products. We used the Northwind database to get he products used for this API project. We used ``` scaffold dbcontext ``` to get all the data from the databse.
 
 # Built With
  This application is built using .Net 6 and C#.
