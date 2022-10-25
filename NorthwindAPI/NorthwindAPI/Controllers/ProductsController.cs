@@ -66,13 +66,12 @@ namespace NorthwindAPI.Controllers
         public async Task<ActionResult<IEnumerable<DTOProduct>>> GetProductByCategoryId(int categoryId)
         {
             var product = await _service.GetProductByCategoryIdAsync(categoryId);
-
-            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
-
             if (product == null)
             {
                 return NotFound();
             }
+
+            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
 
             return dto;
         }
@@ -82,12 +81,12 @@ namespace NorthwindAPI.Controllers
         {
             var product = await _service.GetProductBySupplierIdAsync(supplierId);
 
-            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
-
             if (product == null)
             {
                 return NotFound();
             }
+
+            var dto = product.Select(p => Utils.ProductToDto(p)).ToList();           
 
             return dto;
         }
@@ -105,9 +104,9 @@ namespace NorthwindAPI.Controllers
             var product = await _service.GetProductByIdAsync(id);
 
 
-            product.CategoryId = dto.CategoryId ?? product.CategoryId;
+            product.CategoryId = dto.Category.CategoryId;
             product.ProductName = dto.ProductName ?? product.ProductName;
-            product.SupplierId = dto.SupplierId ?? product.SupplierId;
+            product.SupplierId = dto.Supplier.SupplierId;
             product.UnitPrice = dto.UnitPrice ?? product.UnitPrice;
 
             //_service.Entry(product).State = EntityState.Modified;
@@ -156,11 +155,76 @@ namespace NorthwindAPI.Controllers
             return NoContent();
         }
 
+        // GET: api/Products/Discontinued
+        [HttpGet("Discontinued")]
+        public async Task<IEnumerable<DTOProduct>> GetDiscontinuedProducts()
+        {
+            var all = await _service.GetAllProductsAsync();
+            var discontinued = all.ToList().Where(p => p.Discontinued).ToList();
+            return discontinued.Select(p => Utils.ProductToDto(p)).ToList();
+        }
+
+
+        // GET: api/Products/HighestReorderLevel
+        [HttpGet("HighestReorderLevel")]
+        public async Task<IEnumerable<DTOProduct>> GetProductsWithHighestReorderLevel()
+        {
+            var all = await _service.GetAllProductsAsync();
+            var reorder = all.ToList()
+                .Select(p => p)
+                .OrderByDescending(p => p.ReorderLevel)
+                .ToList();
+
+            var reordedF = reorder.TakeWhile(p => p.ReorderLevel == reorder.First().ReorderLevel);
+            return reordedF.Select(p => Utils.ProductToDto(p)).ToList();
+        }
+
+        // GET: api/Products/HighestStock
+        [HttpGet("HighestStock")]
+        public async Task<IEnumerable<DTOProduct>> GetProductWithHighestStock()
+        {
+            var all = await _service.GetAllProductsAsync();
+            var highest = all.ToList()
+                .Select(p => p)
+                .OrderByDescending(p => p.UnitsInStock)
+                .ToList();
+            var highestF = highest.TakeWhile(p => p.UnitsInStock == highest.First().UnitsInStock).ToList();
+            return highestF.Select(p => Utils.ProductToDto(p)).ToList();
+        }
+
+        // GET: api/Products/LowestStock
+        [HttpGet("LowestStock")]
+        public async Task<IEnumerable<DTOProduct>> GetProductsWithLowestStock()
+        {
+            var all = await _service.GetAllProductsAsync();
+            var lowest = all.ToList()
+                .Select(p => p)
+                .OrderBy(p => p.UnitsInStock)
+                .ToList();
+
+            var lowestF =  lowest.TakeWhile(p => p.UnitsInStock == lowest.First().UnitsInStock);
+            return lowestF.Select(p => Utils.ProductToDto(p)).ToList();
+        }
+
+        public Task<IEnumerable<Product>> GetTop3SellingProducts()
+        {
+            return _service.GetTop3SellingProducts();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsInMostPopularCategory()
+        {
+            return await _service.GetProductsInMostPopularCategory();
+        }
+
+        public async Task<Product?> GetBestSellingProduct()
+        {
+            return await _service.GetBestSellingProduct();
+        }
+
         private bool ProductExists(int id)
         {
-
             //return _service.Products.Any(e => e.ProductId == id);
-            return _service.ProductsExsits(id);
+            return _service.ProductsExists(id);
         }
     }
 }

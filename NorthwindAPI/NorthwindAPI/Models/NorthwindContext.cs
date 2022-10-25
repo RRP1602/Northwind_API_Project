@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace NorthwindAPI.Models
 {
+    [ExcludeFromCodeCoverage]
     public partial class NorthwindContext : DbContext
     {
         public NorthwindContext()
