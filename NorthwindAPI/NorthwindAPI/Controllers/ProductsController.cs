@@ -155,9 +155,73 @@ namespace NorthwindAPI.Controllers
             return NoContent();
         }
 
+        public async Task<IEnumerable<Product>> GetDiscontinuedProducts()
+        {
+            var all = await _service.GetAllProductsAsync();
+            return all.ToList().Where(p => p.Discontinued).ToList();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsWithHighestReorderLevel()
+        {
+            var all = await _service.GetAllProductsAsync();
+            var reorder = all.ToList()
+                .Select(p => p)
+                .OrderByDescending(p => p.ReorderLevel)
+                .ToList();
+
+            return reorder.TakeWhile(p => p.ReorderLevel == reorder.First().ReorderLevel);
+        }
+
+        public async Task<IEnumerable<Product>> GetProductWithHighestStock()
+        {
+            var all = await _service.GetAllProductsAsync();
+            var highest = all.ToList()
+                .Select(p => p)
+                .OrderByDescending(p => p.UnitsInStock)
+                .ToList();
+            return highest.TakeWhile(p => p.UnitsInStock == highest.First().UnitsInStock).ToList();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsWithLowestStock()
+        {
+            var all = await _service.GetAllProductsAsync();
+            var lowest = all.ToList()
+                .Select(p => p)
+                .OrderBy(p => p.UnitsInStock)
+                .ToList();
+
+            return lowest.TakeWhile(p => p.UnitsInStock == lowest.First().UnitsInStock);
+        }
+
+        public Task<Product> GetBestSellingProduct()
+        {
+            //var bestSelling = _context.Products
+            //    .Include(p => p.OrderDetails)
+            //    .GroupBy()
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Product>> GetTop3SellingProducts()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsInMostPopularCategory()
+        {
+            var all = await _service.GetAllProductsAsync();
+            var category = all.ToList()
+                .GroupBy(p => p.CategoryId)
+                .Distinct()
+                .OrderByDescending(grp => grp.Count())
+                .Select(p => new { Id = p.Key, Count = p.Count() })
+                .FirstOrDefault();
+
+            return all.ToList()
+                .Where(p => p.CategoryId == category!.Id)
+                .ToList();
+        }
         private bool ProductExists(int id)
         {
-
             //return _service.Products.Any(e => e.ProductId == id);
             return _service.ProductsExists(id);
         }

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace NorthwindAPI.Models
 {
+    [ExcludeFromCodeCoverage]
     public partial class NorthwindContext : DbContext
     {
         public NorthwindContext()

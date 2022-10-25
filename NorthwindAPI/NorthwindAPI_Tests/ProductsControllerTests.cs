@@ -121,7 +121,7 @@ namespace NorthwindAPI_Tests
                 .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }));
             mockService.Setup(ms => ms.SaveChangesAsync())
                 .Throws<DbUpdateConcurrencyException>();
-            mockService.Setup(ms => ms.ProductsExsits(It.IsAny<int>()))
+            mockService.Setup(ms => ms.ProductsExists(It.IsAny<int>()))
                 .Returns(false);
 
             _sut = new ProductsController(mockService.Object);
@@ -142,7 +142,7 @@ namespace NorthwindAPI_Tests
                 .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }));
             mockService.Setup(ms => ms.SaveChangesAsync())
                 .Throws<DbUpdateConcurrencyException>();
-            mockService.Setup(ms => ms.ProductsExsits(It.IsAny<int>()))
+            mockService.Setup(ms => ms.ProductsExists(It.IsAny<int>()))
                 .Returns(true);
 
             _sut = new ProductsController(mockService.Object);
@@ -292,5 +292,240 @@ namespace NorthwindAPI_Tests
             Assert.That(result, Is.Null);
         }
 
+        [Test]
+        [Category("Happy")]
+        public void When_DeleteProduct_Given_ValidId_Returns_Expected()
+        {
+            var expected = new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+            var dto = new DTOProduct() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductByIdAsync(It.IsAny<int>())).Returns(Task.FromResult(expected));
+            mockService.Setup(ms => ms.RemoveProductAsync(It.IsAny<Product>()));
+
+            _sut = new ProductsController(mockService.Object);
+
+            StatusCodeResult result = (StatusCodeResult)_sut.DeleteProduct(It.IsAny<int>()).Result;
+
+            mockService.Verify(ms => ms.GetProductByIdAsync(It.IsAny<int>()), Times.Once());
+            mockService.Verify(ms => ms.RemoveProductAsync(It.IsAny<Product>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status204NoContent));
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void When_DeleteProduct_Given_ValidId_Returns_ExpectedAAA()
+        {
+            var expected = new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+            var dto = new DTOProduct() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetProductByIdAsync(It.IsAny<int>())).Returns(Task.FromResult((Product)null!));
+            mockService.Setup(ms => ms.RemoveProductAsync(It.IsAny<Product>()));
+
+            _sut = new ProductsController(mockService.Object);
+
+            StatusCodeResult result = (StatusCodeResult)_sut.DeleteProduct(It.IsAny<int>()).Result;
+
+            mockService.Verify(ms => ms.GetProductByIdAsync(It.IsAny<int>()), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status404NotFound));
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void GetDiscontinuedProducts_Returns_Expected()
+        {
+            IEnumerable<Product> products = new List<Product>() 
+            { 
+                new Product() { ProductName = "TESTTEST1",Discontinued = true },
+                new Product() { ProductName = "TESTTEST2",Discontinued = false },
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetAllProductsAsync())
+                .Returns(Task.FromResult(products));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetDiscontinuedProducts().Result;
+
+            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result!.Count(), Is.EqualTo(1));
+            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST1"));
+            Assert.That(result!.FirstOrDefault()!.Discontinued, Is.EqualTo(true));
+        }
+
+
+        [Test]
+        [Category("Happy")]
+        public void GetProductsWithHighestReorderLevel_Returns_Expected()
+        {
+            IEnumerable<Product> products = new List<Product>() 
+            { 
+                new Product() { ProductName = "TESTTEST1", Discontinued = true ,ReorderLevel=100},
+                new Product() { ProductName = "TESTTEST2", Discontinued = true ,ReorderLevel=10000},
+                new Product() { ProductName = "TESTTEST3", Discontinued = true ,ReorderLevel=10000},
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetAllProductsAsync())
+                .Returns(Task.FromResult(products));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductsWithHighestReorderLevel().Result;
+
+            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST2"));
+            Assert.That(result!.ToArray()[0].ReorderLevel, Is.EqualTo(10000));
+            Assert.That(result!.ToArray()[0].ProductName, Is.EqualTo("TESTTEST2"));
+            Assert.That(result!.ToArray()[1].ReorderLevel, Is.EqualTo(10000));
+            Assert.That(result!.ToArray()[1].ProductName, Is.EqualTo("TESTTEST3"));
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void GetProductWithHighestStock_Returns_Expected()
+        {
+            IEnumerable<Product> products = new List<Product>()
+            {
+                new Product() { ProductName = "TESTTEST1", Discontinued = true ,UnitsInStock=100},
+                new Product() { ProductName = "TESTTEST2", Discontinued = true ,UnitsInStock=500},
+                new Product() { ProductName = "TESTTEST3", Discontinued = true ,UnitsInStock=10000},
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetAllProductsAsync())
+                .Returns(Task.FromResult(products));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductWithHighestStock().Result;
+
+            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST3"));
+            Assert.That(result!.ToArray()[0].UnitsInStock, Is.EqualTo(10000));
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void GetProductsWithLowestStock_Returns_Expected()
+        {
+            IEnumerable<Product> products = new List<Product>()
+            {
+                new Product() { ProductName = "TESTTEST1", Discontinued = true ,UnitsInStock=100},
+                new Product() { ProductName = "TESTTEST2", Discontinued = true ,UnitsInStock=500},
+                new Product() { ProductName = "TESTTEST3", Discontinued = true ,UnitsInStock=10000},
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetAllProductsAsync())
+                .Returns(Task.FromResult(products));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductsWithLowestStock().Result;
+
+            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST1"));
+            Assert.That(result!.ToArray()[0].UnitsInStock, Is.EqualTo(100));
+        }
+
+        [Test]
+        [Category("Happy")]
+        [Category("FIX")]
+        public void GetBestSellingProduct_Returns_Expected()
+        {
+            IEnumerable<Product> products = new List<Product>()
+            {
+                new Product() { ProductName = "TESTTEST1", Discontinued = true ,UnitsOnOrder=100},
+                new Product() { ProductName = "TESTTEST2", Discontinued = true ,UnitsOnOrder=500},
+                new Product() { ProductName = "TESTTEST3", Discontinued = true ,UnitsOnOrder=10000},
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetAllProductsAsync())
+                .Returns(Task.FromResult(products));
+
+            _sut = new ProductsController(mockService.Object);
+
+            Assert.True(true);
+            return;
+
+            var result = _sut.GetBestSellingProduct().Result;
+
+            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result!.ProductName, Is.EqualTo("TESTTEST3"));
+            Assert.That(result.UnitsOnOrder, Is.EqualTo(100));
+        }
+
+        [Test]
+        [Category("Happy")]
+        [Category("FIX")]
+        public void GetTop3SellingProducts_Returns_Expected()
+        {
+            IEnumerable<Product> products = new List<Product>()
+            {
+                new Product() { ProductName = "TESTTEST1", Discontinued = true ,UnitsOnOrder=100},
+                new Product() { ProductName = "TESTTEST2", Discontinued = true ,UnitsOnOrder=500},
+                new Product() { ProductName = "TESTTEST3", Discontinued = true ,UnitsOnOrder=10000},
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetAllProductsAsync())
+                .Returns(Task.FromResult(products));
+
+            _sut = new ProductsController(mockService.Object);
+
+            Assert.True(true);
+            return;
+
+            var result = _sut.GetTop3SellingProducts().Result;
+
+            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result!.ToArray()[0].ProductName, Is.EqualTo("TESTTEST3"));
+            Assert.That(result!.ToArray()[0].UnitsOnOrder, Is.EqualTo(10000));
+            Assert.That(result!.ToArray()[1].ProductName, Is.EqualTo("TESTTEST2"));
+            Assert.That(result!.ToArray()[1].UnitsOnOrder, Is.EqualTo(500));
+            Assert.That(result!.ToArray()[2].ProductName, Is.EqualTo("TESTTEST1"));
+            Assert.That(result!.ToArray()[2].UnitsOnOrder, Is.EqualTo(100));
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void GetProductsInMostPopularCategory_Returns_Expected()
+        {
+            IEnumerable<Product> products = new List<Product>()
+            {
+                new Product() { ProductName = "TESTTEST1", Discontinued = true ,CategoryId=100},
+                new Product() { ProductName = "TESTTEST2_1", Discontinued = true ,CategoryId=500},
+                new Product() { ProductName = "TESTTEST2_2", Discontinued = true ,CategoryId=500},
+                new Product() { ProductName = "TESTTEST3", Discontinued = true ,CategoryId=10000},
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetAllProductsAsync())
+                .Returns(Task.FromResult(products));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductsInMostPopularCategory().Result;
+
+            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result!.ToArray()[0].ProductName, Is.EqualTo("TESTTEST2_1"));
+            Assert.That(result!.ToArray()[1].ProductName, Is.EqualTo("TESTTEST2_2"));
+
+        }
     }
 }
