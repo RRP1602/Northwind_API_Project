@@ -339,7 +339,11 @@ namespace NorthwindAPI_Tests
         [Category("Happy")]
         public void GetDiscontinuedProducts_Returns_Expected()
         {
-            IEnumerable<Product> products = new List<Product>() { new Product() { ProductName = "TESTTEST",Discontinued = true } };
+            IEnumerable<Product> products = new List<Product>() 
+            { 
+                new Product() { ProductName = "TESTTEST1",Discontinued = true },
+                new Product() { ProductName = "TESTTEST2",Discontinued = false },
+            };
 
             var mockService = new Mock<IProductService>();
             mockService.Setup(ms => ms.GetAllProductsAsync())
@@ -351,7 +355,8 @@ namespace NorthwindAPI_Tests
 
             mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
-            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST"));
+            Assert.That(result!.Count(), Is.EqualTo(1));
+            Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST1"));
             Assert.That(result!.FirstOrDefault()!.Discontinued, Is.EqualTo(true));
         }
 
@@ -435,7 +440,6 @@ namespace NorthwindAPI_Tests
         }
 
         [Test]
-        [Ignore("Method Not Implemented Yet")]
         [Category("Happy")]
         public void GetBestSellingProduct_Returns_Expected()
         {
@@ -460,9 +464,7 @@ namespace NorthwindAPI_Tests
             Assert.That(result.UnitsOnOrder, Is.EqualTo(100));
         }
 
-
         [Test]
-        [Ignore("Method Not Implemented Yet")]
         [Category("Happy")]
         public void GetTop3SellingProducts_Returns_Expected()
         {
@@ -489,6 +491,33 @@ namespace NorthwindAPI_Tests
             Assert.That(result!.ToArray()[1].UnitsOnOrder, Is.EqualTo(500));
             Assert.That(result!.ToArray()[2].ProductName, Is.EqualTo("TESTTEST1"));
             Assert.That(result!.ToArray()[2].UnitsOnOrder, Is.EqualTo(100));
+        }
+
+        [Test]
+        [Category("Happy")]
+        public void GetProductsInMostPopularCategory_Returns_Expected()
+        {
+            IEnumerable<Product> products = new List<Product>()
+            {
+                new Product() { ProductName = "TESTTEST1", Discontinued = true ,CategoryId=100},
+                new Product() { ProductName = "TESTTEST2_1", Discontinued = true ,CategoryId=500},
+                new Product() { ProductName = "TESTTEST2_2", Discontinued = true ,CategoryId=500},
+                new Product() { ProductName = "TESTTEST3", Discontinued = true ,CategoryId=10000},
+            };
+
+            var mockService = new Mock<IProductService>();
+            mockService.Setup(ms => ms.GetAllProductsAsync())
+                .Returns(Task.FromResult(products));
+
+            _sut = new ProductsController(mockService.Object);
+
+            var result = _sut.GetProductsInMostPopularCategory().Result;
+
+            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
+            Assert.That(_sut, Is.InstanceOf<ProductsController>());
+            Assert.That(result!.ToArray()[0].ProductName, Is.EqualTo("TESTTEST2_1"));
+            Assert.That(result!.ToArray()[1].ProductName, Is.EqualTo("TESTTEST2_2"));
+
         }
     }
 }

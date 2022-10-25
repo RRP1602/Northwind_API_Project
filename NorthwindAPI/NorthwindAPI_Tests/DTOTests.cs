@@ -70,7 +70,6 @@ namespace NorthwindAPI_Tests
             Assert.That(result.TotalProducts, Is.EqualTo(1));
         }
 
-
         [Test]
         public void DTOOrderDetails_Works_As_Expected()
         {
