@@ -39,7 +39,7 @@ Above is an example of how it looks when all the products are selected on Postma
 
 # Web API
 A Web API is an application programming interface for the Web. A web API can be made using .Net or Java. A web API is very useful as it allows GET, POST and many more requests to be used via an interface. This interface can be used for a variety of requests via the Internet.
-![Postman]
+![Postman](./README_Screenshots/webapi_screenshots.png)
 Above is a visual representation of how a Web API works. 
 
 # Contributors 
