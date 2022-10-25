@@ -441,7 +441,6 @@ namespace NorthwindAPI_Tests
 
         [Test]
         [Category("Happy")]
-        [Category("FIX")]
         public void GetBestSellingProduct_Returns_Expected()
         {
             IEnumerable<Product> products = new List<Product>()
@@ -457,9 +456,6 @@ namespace NorthwindAPI_Tests
 
             _sut = new ProductsController(mockService.Object);
 
-            Assert.True(true);
-            return;
-
             var result = _sut.GetBestSellingProduct().Result;
 
             mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
@@ -470,7 +466,6 @@ namespace NorthwindAPI_Tests
 
         [Test]
         [Category("Happy")]
-        [Category("FIX")]
         public void GetTop3SellingProducts_Returns_Expected()
         {
             IEnumerable<Product> products = new List<Product>()
@@ -485,9 +480,6 @@ namespace NorthwindAPI_Tests
                 .Returns(Task.FromResult(products));
 
             _sut = new ProductsController(mockService.Object);
-
-            Assert.True(true);
-            return;
 
             var result = _sut.GetTop3SellingProducts().Result;
 

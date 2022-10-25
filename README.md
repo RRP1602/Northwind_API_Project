@@ -1,5 +1,5 @@
 # Northwind_API_Project 
-[![Coverage Status](https://coveralls.io/repos/github/RRP1602/Northwind_API_Project/badge.svg?branch=Tests)](https://coveralls.io/github/RRP1602/Northwind_API_Project?branch=ci)
+[![Coverage Status](https://coveralls.io/repos/github/RRP1602/Northwind_API_Project/badge.svg?branch=ci)](https://coveralls.io/github/RRP1602/Northwind_API_Project?branch=ci)
 
 ## Table Of Contents
 
@@ -27,17 +27,14 @@ https://github.com/RRP1602/Northwind_API_Project.git
 - Once the repo has been cloned open the ``` NorthwindAPI.sln``` file. 
 - Run the code and use the url you get and copy and paste it into Postman. 
 
-![Postman](README_Screenshots/postman_screenshot.PNG)
+![Postman](./README_Screenshots/postman_screenshot.png)
 Above is an example of how it looks when all the products selected on Postman. 
-
 
 # Web API
 A Web API is an application programming interface for the Web. A web API can be made using .Net or Java. A web API is very useful as it allows GET,POST and many more requests to be used via an interface. This interface can be used for a varitey of requests via the Internet.
-![WebApi](README_Screenshots/webapi_screenshots.PNG)
+![Postman](./README_Screenshots/webapi_screenshots.png)
 
 Above is visual represenation of how a Web APi works. 
-
-
 
 # Contributors 
 - Lewis James Kellet(Scrum Master)
@@ -45,4 +42,3 @@ Above is visual represenation of how a Web APi works.
 - Nath Bird
 - Cesar Mello
 - Rahul Patel
-
