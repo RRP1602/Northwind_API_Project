@@ -1,8 +1,11 @@
 ﻿using NorthwindAPI.Models;
 using NorthwindAPI.Models.DTO;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NorthwindAPI.Controllers
 {
+    [ExcludeFromCodeCoverage]
+
     public static class Utils
     {
         public static DTOProduct ProductToDto(Product product)
@@ -22,9 +25,9 @@ namespace NorthwindAPI.Controllers
             return new Product
             {
                 ProductId = dto.ProductId,
-                Category = Utils.DtoToCategory(dto.Category),
+                Category = DtoToCategory(dto.Category),
                 ProductName = dto.ProductName,
-                Supplier = Utils.DtoToSupplier(dto.Supplier),
+                Supplier = DtoToSupplier(dto.Supplier),
                 UnitPrice = dto.UnitPrice
             };
         }

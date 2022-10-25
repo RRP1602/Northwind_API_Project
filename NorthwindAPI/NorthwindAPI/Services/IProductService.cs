@@ -11,6 +11,9 @@ namespace NorthwindAPI.Services
         Task<IEnumerable<Product>> GetProductBySupplierIdAsync(int id);
         Task AddProductAsync(Product product); 
         Task RemoveProductAsync(Product product);
+        Task<IEnumerable<Product>> GetProductsInMostPopularCategory();
+        Task<Product?> GetBestSellingProduct();
+        Task<IEnumerable<Product>> GetTop3SellingProducts();
         Task<int> SaveChangesAsync();
         bool ProductsExists(int id);
     }
