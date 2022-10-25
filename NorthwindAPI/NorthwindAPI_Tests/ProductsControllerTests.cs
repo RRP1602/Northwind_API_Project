@@ -86,11 +86,11 @@ namespace NorthwindAPI_Tests
             mockService.Setup(ms => ms.SaveChangesAsync())
                 .Returns(Task.FromResult(It.IsAny<int>()));
             mockService.Setup(ms => ms.GetProductByIdAsync(It.IsAny<int>()))
-                .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }));
+                .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST", Category = new(), Supplier = new() }));
             _sut = new ProductsController(mockService.Object);
 
-            StatusCodeResult result =
-                (StatusCodeResult)_sut.PutProduct(It.IsAny<int>(), new DTOProduct() { ProductName = "TESTTEST" }).Result;
+        StatusCodeResult result =
+                (StatusCodeResult)_sut.PutProduct(It.IsAny<int>(), new DTOProduct() { ProductName = "TESTTEST", Category = new(), Supplier = new() }).Result;
 
             mockService.Verify(ms => ms.SaveChangesAsync(), Times.Once());
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
@@ -126,7 +126,7 @@ namespace NorthwindAPI_Tests
 
             _sut = new ProductsController(mockService.Object);
 
-            StatusCodeResult result = (StatusCodeResult)_sut.PutProduct(It.IsAny<int>(), new DTOProduct() { ProductName = "TESTTEST" }).Result;
+            StatusCodeResult result = (StatusCodeResult)_sut.PutProduct(It.IsAny<int>(), new DTOProduct() { ProductName = "TESTTEST", Category = new(), Supplier = new() }).Result;
 
             mockService.Verify(ms => ms.SaveChangesAsync(), Times.Once());
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
@@ -151,7 +151,7 @@ namespace NorthwindAPI_Tests
 
             Assert.Throws<AggregateException>(() =>
             {
-                result = (StatusCodeResult)_sut.PutProduct(It.IsAny<int>(), new DTOProduct() { ProductName = "TESTTEST" }).Result;
+                result = (StatusCodeResult)_sut.PutProduct(It.IsAny<int>(), new DTOProduct() { ProductName = "TESTTEST", Category = new(), Supplier = new() }).Result;
             });
 
             mockService.Verify(ms => ms.SaveChangesAsync(), Times.Once());
@@ -277,9 +277,9 @@ namespace NorthwindAPI_Tests
         [Category("Happy")]
         public void When_PostProduct_Given_ValidDTO_Returns_Expected()
         {
-            var expected = new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
-            var dto = new DTOProduct() { ProductId = int.MaxValue, ProductName = "TESTTEST" };
-           
+            var expected = new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST", Category = new() , Supplier = new() };
+            var dto = new DTOProduct() { ProductId = int.MaxValue, ProductName = "TESTTEST",Category=new(), Supplier = new() };
+
             var mockService = new Mock<IProductService>();
             mockService.Setup(ms => ms.AddProductAsync(It.IsAny<Product>())).Returns(Task.FromResult(expected));
 
@@ -357,7 +357,6 @@ namespace NorthwindAPI_Tests
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
             Assert.That(result!.Count(), Is.EqualTo(1));
             Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST1"));
-            Assert.That(result!.FirstOrDefault()!.Discontinued, Is.EqualTo(true));
         }
 
 
@@ -383,9 +382,7 @@ namespace NorthwindAPI_Tests
             mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
             Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST2"));
-            Assert.That(result!.ToArray()[0].ReorderLevel, Is.EqualTo(10000));
             Assert.That(result!.ToArray()[0].ProductName, Is.EqualTo("TESTTEST2"));
-            Assert.That(result!.ToArray()[1].ReorderLevel, Is.EqualTo(10000));
             Assert.That(result!.ToArray()[1].ProductName, Is.EqualTo("TESTTEST3"));
         }
 
@@ -411,7 +408,6 @@ namespace NorthwindAPI_Tests
             mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
             Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST3"));
-            Assert.That(result!.ToArray()[0].UnitsInStock, Is.EqualTo(10000));
         }
 
         [Test]
@@ -436,88 +432,6 @@ namespace NorthwindAPI_Tests
             mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
             Assert.That(_sut, Is.InstanceOf<ProductsController>());
             Assert.That(result!.FirstOrDefault()!.ProductName, Is.EqualTo("TESTTEST1"));
-            Assert.That(result!.ToArray()[0].UnitsInStock, Is.EqualTo(100));
-        }
-
-        [Test]
-        [Category("Happy")]
-        public void GetBestSellingProduct_Returns_Expected()
-        {
-            IEnumerable<Product> products = new List<Product>()
-            {
-                new Product() { ProductName = "TESTTEST1", Discontinued = true ,UnitsOnOrder=100},
-                new Product() { ProductName = "TESTTEST2", Discontinued = true ,UnitsOnOrder=500},
-                new Product() { ProductName = "TESTTEST3", Discontinued = true ,UnitsOnOrder=10000},
-            };
-
-            var mockService = new Mock<IProductService>();
-            mockService.Setup(ms => ms.GetAllProductsAsync())
-                .Returns(Task.FromResult(products));
-
-            _sut = new ProductsController(mockService.Object);
-
-            var result = _sut.GetBestSellingProduct().Result;
-
-            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
-            Assert.That(_sut, Is.InstanceOf<ProductsController>());
-            Assert.That(result!.ProductName, Is.EqualTo("TESTTEST3"));
-            Assert.That(result.UnitsOnOrder, Is.EqualTo(100));
-        }
-
-        [Test]
-        [Category("Happy")]
-        public void GetTop3SellingProducts_Returns_Expected()
-        {
-            IEnumerable<Product> products = new List<Product>()
-            {
-                new Product() { ProductName = "TESTTEST1", Discontinued = true ,UnitsOnOrder=100},
-                new Product() { ProductName = "TESTTEST2", Discontinued = true ,UnitsOnOrder=500},
-                new Product() { ProductName = "TESTTEST3", Discontinued = true ,UnitsOnOrder=10000},
-            };
-
-            var mockService = new Mock<IProductService>();
-            mockService.Setup(ms => ms.GetAllProductsAsync())
-                .Returns(Task.FromResult(products));
-
-            _sut = new ProductsController(mockService.Object);
-
-            var result = _sut.GetTop3SellingProducts().Result;
-
-            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
-            Assert.That(_sut, Is.InstanceOf<ProductsController>());
-            Assert.That(result!.ToArray()[0].ProductName, Is.EqualTo("TESTTEST3"));
-            Assert.That(result!.ToArray()[0].UnitsOnOrder, Is.EqualTo(10000));
-            Assert.That(result!.ToArray()[1].ProductName, Is.EqualTo("TESTTEST2"));
-            Assert.That(result!.ToArray()[1].UnitsOnOrder, Is.EqualTo(500));
-            Assert.That(result!.ToArray()[2].ProductName, Is.EqualTo("TESTTEST1"));
-            Assert.That(result!.ToArray()[2].UnitsOnOrder, Is.EqualTo(100));
-        }
-
-        [Test]
-        [Category("Happy")]
-        public void GetProductsInMostPopularCategory_Returns_Expected()
-        {
-            IEnumerable<Product> products = new List<Product>()
-            {
-                new Product() { ProductName = "TESTTEST1", Discontinued = true ,CategoryId=100},
-                new Product() { ProductName = "TESTTEST2_1", Discontinued = true ,CategoryId=500},
-                new Product() { ProductName = "TESTTEST2_2", Discontinued = true ,CategoryId=500},
-                new Product() { ProductName = "TESTTEST3", Discontinued = true ,CategoryId=10000},
-            };
-
-            var mockService = new Mock<IProductService>();
-            mockService.Setup(ms => ms.GetAllProductsAsync())
-                .Returns(Task.FromResult(products));
-
-            _sut = new ProductsController(mockService.Object);
-
-            var result = _sut.GetProductsInMostPopularCategory().Result;
-
-            mockService.Verify(ms => ms.GetAllProductsAsync(), Times.Once());
-            Assert.That(_sut, Is.InstanceOf<ProductsController>());
-            Assert.That(result!.ToArray()[0].ProductName, Is.EqualTo("TESTTEST2_1"));
-            Assert.That(result!.ToArray()[1].ProductName, Is.EqualTo("TESTTEST2_2"));
-
         }
     }
 }

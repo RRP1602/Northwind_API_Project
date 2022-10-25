@@ -160,7 +160,6 @@ namespace NorthwindAPI.Controllers
         public async Task<IEnumerable<DTOProduct>> GetDiscontinuedProducts()
         {
             var all = await _service.GetAllProductsAsync();
-           
             var discontinued = all.ToList().Where(p => p.Discontinued).ToList();
             return discontinued.Select(p => Utils.ProductToDto(p)).ToList();
         }
@@ -207,33 +206,21 @@ namespace NorthwindAPI.Controllers
             return lowestF.Select(p => Utils.ProductToDto(p)).ToList();
         }
 
-        public Task<Product> GetBestSellingProduct()
-        {
-            //var bestSelling = _context.Products
-            //    .Include(p => p.OrderDetails)
-            //    .GroupBy()
-            throw new NotImplementedException();
-        }
-
         public Task<IEnumerable<Product>> GetTop3SellingProducts()
         {
-            throw new NotImplementedException();
+            return _service.GetTop3SellingProducts();
         }
 
         public async Task<IEnumerable<Product>> GetProductsInMostPopularCategory()
         {
-            var all = await _service.GetAllProductsAsync();
-            var category = all.ToList()
-                .GroupBy(p => p.CategoryId)
-                .Distinct()
-                .OrderByDescending(grp => grp.Count())
-                .Select(p => new { Id = p.Key, Count = p.Count() })
-                .FirstOrDefault();
-
-            return all.ToList()
-                .Where(p => p.CategoryId == category!.Id)
-                .ToList();
+            return await _service.GetProductsInMostPopularCategory();
         }
+
+        public async Task<Product?> GetBestSellingProduct()
+        {
+            return await _service.GetBestSellingProduct();
+        }
+
         private bool ProductExists(int id)
         {
             //return _service.Products.Any(e => e.ProductId == id);

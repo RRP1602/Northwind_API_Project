@@ -71,6 +71,52 @@ namespace NorthwindAPI.Services
             await SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<Product>> GetProductsInMostPopularCategory()
+        {
+            var category = await (from p in _context.Products
+                                  join od in _context.OrderDetails on p.ProductId equals od.ProductId
+                                  group od by od.ProductId into g
+                                  orderby g.Count() descending
+                                  select new { Id = g.Key, Count = g.Count() }
+                            ).Distinct()
+                            .FirstOrDefaultAsync();
+
+            return await _context.Products
+                .Where(p => p.CategoryId == category.Id)
+                .ToListAsync();
+        }
+
+        public async Task<Product?> GetBestSellingProduct()
+        {
+            var products = await (from p in _context.Products
+                                  join od in _context.OrderDetails on p.ProductId equals od.ProductId
+                                  group od by od.ProductId into g
+                                  orderby g.Count() descending
+                                  select new { Id = g.Key, Count = g.Count() }
+                           ).Distinct()
+                           .FirstOrDefaultAsync();
+
+            return await GetProductByIdAsync(products.Id);
+        }
+
+        public async Task<IEnumerable<Product>> GetTop3SellingProducts()
+        {
+            var product = (from p in _context.Products
+                           join od in _context.OrderDetails on p.ProductId equals od.ProductId
+                           group od by od.ProductId into g
+                           orderby g.Count() descending
+                           select new { Id = g.Key, Count = g.Count() }
+                          ).Distinct()
+                          .Take(3)
+                          .ToList();
+
+            var bestSelling = await _context.Products
+                .Where(p => p.ProductId == product[0].Id || p.ProductId == product[1].Id || p.ProductId == product[2].Id)
+                .ToListAsync();
+
+            return bestSelling;
+        }
+
         public Task<int> SaveChangesAsync()
         {
             return _context.SaveChangesAsync();
