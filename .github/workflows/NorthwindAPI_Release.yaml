@@ -20,7 +20,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Publish
-      run: dotnet publish .\NorthwindAPI\NorthwindAPI\NorthwindAPI.csproj -c Release -o ./output
+      run: dotnet publish ./NorthwindAPI/NorthwindAPI.csproj -c Release -o ./output
     - name: Package
       run: zip -r ${{ github.event.repository.name }}.zip ./output/*
     - name: Release
