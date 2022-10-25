@@ -14,7 +14,7 @@ namespace NorthwindAPI.Services
         Task<IEnumerable<Product>> GetProductsWithHighestReorderLevel();
         Task<IEnumerable<Product>> GetProductWithHighestStock();
         Task<IEnumerable<Product>> GetProductsWithLowestStock();
-        Task<Product> GetBestSellingProduct();
+        Task<Product?> GetBestSellingProduct();
         Task<IEnumerable<Product>> GetTop3SellingProducts();
         Task AddProductAsync(Product product); 
         Task RemoveProductAsync(Product product);

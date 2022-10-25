@@ -20,6 +20,7 @@ namespace NorthwindAPI_Tests
             _sut = new ProductService(_context);
             _sut.AddProductAsync(new Product { ProductId = 1, ProductName = "Test", SupplierId = 1, CategoryId = 1, QuantityPerUnit = "1", UnitPrice = 1, UnitsInStock = 1, UnitsOnOrder = 1, ReorderLevel = 1 }).Wait();
             _sut.AddProductAsync(new Product { ProductId = 2, ProductName = "TestSameSupplierId", SupplierId = 14, CategoryId = 2, QuantityPerUnit = "2", UnitPrice = 2, UnitsInStock = 2, UnitsOnOrder = 2, ReorderLevel = 2 }).Wait();
+            
 
         }
 
@@ -124,14 +125,14 @@ namespace NorthwindAPI_Tests
         [Test]
         public void GivenProductExists_ProductsExsits_ReturnsTrue()
         {
-            var result = _sut.ProductsExsits(1);
+            var result = _sut.ProductsExists(1);
             Assert.That(result, Is.EqualTo(true));
         }
         [Category("ProductExists")]
         [Test]
         public void GivenProducDoesNottExist_ProductsExsits_ReturnsFalse()
         {
-            var result = _sut.ProductsExsits(1000);
+            var result = _sut.ProductsExists(1000);
             Assert.That(result, Is.EqualTo(false));
         }
         [Category("SaveChangesAsync")]
@@ -146,5 +147,17 @@ namespace NorthwindAPI_Tests
             Assert.That(result, Is.TypeOf<int>());
             Assert.That(_context.Products.Where(x => x.ProductName == "TEST TEST"), Is.Not.Null);
         }
+
+        [Test]
+        public void GetProductsWithHighestStock_ReturnsListOfHighestStock()
+        {
+            var result = _sut.GetProductWithHighestStock().Result;
+            var expected = new List<Product> {
+                new Product { ProductId = 2, ProductName = "TestSameSupplierId", SupplierId = 14, CategoryId = 2, QuantityPerUnit = "2", UnitPrice = 2, UnitsInStock = 2, UnitsOnOrder = 2, ReorderLevel = 2, Discontinued = true }
+            };
+            Assert.That(result, Is.EquivalentTo(expected));
+        }
+
+        
     }
 }

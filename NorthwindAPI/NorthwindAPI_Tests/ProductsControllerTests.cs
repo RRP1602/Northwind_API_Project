@@ -121,7 +121,7 @@ namespace NorthwindAPI_Tests
                 .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }));
             mockService.Setup(ms => ms.SaveChangesAsync())
                 .Throws<DbUpdateConcurrencyException>();
-            mockService.Setup(ms => ms.ProductsExsits(It.IsAny<int>()))
+            mockService.Setup(ms => ms.ProductsExists(It.IsAny<int>()))
                 .Returns(false);
 
             _sut = new ProductsController(mockService.Object);
@@ -142,7 +142,7 @@ namespace NorthwindAPI_Tests
                 .Returns(Task.FromResult(new Product() { ProductId = int.MaxValue, ProductName = "TESTTEST" }));
             mockService.Setup(ms => ms.SaveChangesAsync())
                 .Throws<DbUpdateConcurrencyException>();
-            mockService.Setup(ms => ms.ProductsExsits(It.IsAny<int>()))
+            mockService.Setup(ms => ms.ProductsExists(It.IsAny<int>()))
                 .Returns(true);
 
             _sut = new ProductsController(mockService.Object);

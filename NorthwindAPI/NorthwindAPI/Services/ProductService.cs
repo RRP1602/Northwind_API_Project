@@ -75,12 +75,14 @@ namespace NorthwindAPI.Services
 
         public async Task<IEnumerable<Product>> GetProductsInMostPopularCategory()
         {
-            var category = await _context.Products
-                .GroupBy(p => p.CategoryId)
-                .Distinct()
-                .OrderByDescending(grp => grp.Count())
-                .Select(p => new {Id = p.Key, Count = p.Count()})
-                .FirstOrDefaultAsync();
+
+            var category = await (from p in _context.Products
+                            join od in _context.OrderDetails on p.ProductId equals od.ProductId
+                            group od by od.ProductId into g
+                            orderby g.Count() descending
+                            select new { Id = g.Key, Count = g.Count() }
+                            ).Distinct()
+                            .FirstOrDefaultAsync();
 
             return await _context.Products
                 .Where(p => p.CategoryId == category.Id)
@@ -109,7 +111,9 @@ namespace NorthwindAPI.Services
                 .OrderByDescending(p => p.UnitsInStock)
                 .ToListAsync();
 
-            return highest.TakeWhile(p => p.UnitsInStock == highest.First().UnitsInStock);
+            var first = highest.First().UnitsInStock;
+
+            return highest.Where(p => p.UnitsInStock == first).ToList();
         }
 
         public async Task<IEnumerable<Product>> GetProductsWithLowestStock()
@@ -122,17 +126,35 @@ namespace NorthwindAPI.Services
             return highest.TakeWhile(p => p.UnitsInStock == highest.First().UnitsInStock);
         }
 
-        public Task<Product> GetBestSellingProduct()
+        public async Task<Product?> GetBestSellingProduct()
         {
-            //var bestSelling = _context.Products
-            //    .Include(p => p.OrderDetails)
-            //    .GroupBy()
-            throw new NotImplementedException();
+            var products = await (from p in _context.Products
+                                  join od in _context.OrderDetails on p.ProductId equals od.ProductId
+                                  group od by od.ProductId into g
+                                  orderby g.Count() descending
+                                  select new { Id = g.Key, Count = g.Count() }
+                           ).Distinct()
+                           .FirstOrDefaultAsync();
+
+            return await GetProductByIdAsync(products.Id);
         }
 
-        public Task<IEnumerable<Product>> GetTop3SellingProducts()
+        public async Task<IEnumerable<Product>> GetTop3SellingProducts()
         {
-            throw new NotImplementedException();
+            var product = (from p in _context.Products
+                           join od in _context.OrderDetails on p.ProductId equals od.ProductId
+                           group od by od.ProductId into g
+                           orderby g.Count() descending
+                           select new { Id = g.Key, Count = g.Count() }
+                          ).Distinct()
+                          .Take(3)
+                          .ToList();
+
+            var bestSelling = await _context.Products
+                .Where(p => p.ProductId == product[0].Id || p.ProductId == product[1].Id || p.ProductId == product[2].Id)
+                .ToListAsync();
+
+            return bestSelling;
         }
     }
 }
